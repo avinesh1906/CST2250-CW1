@@ -1,6 +1,20 @@
 #ifndef __MAIN_H_
 #define __MAIN_H_
 
+#include <string>
+#include <vector>
+
+
+struct details
+{
+    int id;
+    std::string name;
+    int seatCapacity;
+    int availableSeat;
+    std::vector <int> seatAllocated;
+};
+
+
 /* 
     To display the menu for the staff to make its choice.
     @param no parameter

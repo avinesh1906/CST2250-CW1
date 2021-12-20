@@ -1,19 +1,9 @@
 #include "main.h"
-#include "events.h"
+// #include "events.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
-
-struct details
-{
-    int id;
-    std::string name;
-    int seatCapacity;
-    int availableSeat;
-    std::vector <int> seatAllocated;
-};
-
 
 int main()
 {
@@ -44,17 +34,17 @@ int main()
     if (option == 1) {
         std::cout << std::endl << "You choose Live event" << std::endl;
         // call function live
-        live(); 
+        // live(); 
     } else if (option == 2) {
         std::cout << std::endl << "You choose Stand Up event" << std::endl;
         // call function standUp
-        standUp(); 
+        // standUp(); 
     } else if (option == 3) {
         std::cout << std::endl << "You choose film event" << std::endl;
         // call function film
-        film();
+        // film();
     } else if (option == 4) {
-        std::cout << "List details of all events" << std::endl;
+        std::cout << std::endl << "List details of all events" << std::endl;
         // call function all
         all(liveDetails, standUpDetails, filmDetails);
     } else {
@@ -74,13 +64,14 @@ int menu()
         std::cout << "3. Film " << std::endl;
         std::cout << "4. List details for all events " << std::endl;
         std::cout << "5. Quit " << std::endl;
+        std::cout << std::endl << "Enter your choice: " << std::endl;
         std::cin >> option;
 
-        if (option != 1 || option != 2 || option != 3 || option != 4 || option != 5 ) {
+        if (option <= 1 && option >= 5 ) {
             std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
         }
 
-    } while (option != 5);
+    } while (option <= 1 && option >= 5);
 
     return option;    
 }   
