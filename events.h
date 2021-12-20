@@ -2,6 +2,7 @@
 #define __EVENTS_H_
 
 #include <string>
+#include <vector>
 
 class Event {
     private:
@@ -25,6 +26,14 @@ class Event {
 };
 
 class Live : public Event {
+    public:
+        void booking();
+};
+
+class StandUp : public Event {
+    private:
+        std::vector <int> seatTrack;
+
     public:
         void booking();
 };
