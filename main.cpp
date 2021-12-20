@@ -14,7 +14,6 @@ struct details
     std::vector <int> seatAllocated;
 };
 
-int menu();
 
 int main()
 {

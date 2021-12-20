@@ -2,6 +2,13 @@
 #define __MAIN_H_
 
 /* 
+    To display the menu for the staff to make its choice.
+    @param no parameter
+    @return int
+ */
+int menu();
+
+/* 
     To add a booking or cancel booking for live event.
     @param no parameters
     @return void 
