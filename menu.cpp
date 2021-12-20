@@ -1,4 +1,5 @@
 #include "events.h"
+#include "menu.h"
 #include <iostream>
 
 int main()
@@ -10,7 +11,8 @@ int main()
         std::cout << "1: Live event" << std::endl;
         std::cout << "2. Stand Up" << std::endl;
         std::cout << "3. Film " << std::endl;
-        std::cout << "4. Quit " << std::endl;
+        std::cout << "4. All " << std::endl;
+        std::cout << "5. Quit " << std::endl;
         std::cin >> option;
 
         if (option == 1) {
