@@ -24,4 +24,9 @@ class Event {
         virtual void booking() = 0;
 };
 
+class Live : public Event {
+    public:
+        void booking();
+};
+
 #endif
