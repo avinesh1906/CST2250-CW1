@@ -9,8 +9,8 @@ struct details
 {
     int id;
     std::string name;
-    std::string seatCapacity;
-    std::string availableSeat;
+    int seatCapacity;
+    int availableSeat;
     std::vector <int> seatAllocated;
 };
 
