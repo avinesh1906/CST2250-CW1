@@ -18,6 +18,7 @@ struct details
 int main()
 {
     details liveDetails, standUpDetails, filmDetails;
+    int option;
 
     // SHOULD USE dynamically allocated structure to read/save to a file (week7-lab5))
 
@@ -39,17 +40,33 @@ int main()
     filmDetails.availableSeat = 175;
     filmDetails.seatAllocated = {};
 
-    // call menu
-    if (menu() == 0){
+    option = menu();
+    if (option == 1) {
+        std::cout << std::endl << "You choose Live event" << std::endl;
+        // call function live
+        live(); 
+    } else if (option == 2) {
+        std::cout << std::endl << "You choose Stand Up event" << std::endl;
+        // call function standUp
+        standUp(); 
+    } else if (option == 3) {
+        std::cout << std::endl << "You choose film event" << std::endl;
+        // call function film
+        film();
+    } else if (option == 4) {
+        std::cout << "List details of all events" << std::endl;
+        // call function all
+        all();
+    } else {
+        std::cout << "Bye Bye" << std::endl;
         return 0;
-    };
+    }
 
 }
 
 int menu()
 {
     int option;
-
     do {
         std::cout << std::endl << "******** Main Menu ********" << std::endl;
         std::cout << "1: Live event" << std::endl;
@@ -59,29 +76,16 @@ int menu()
         std::cout << "5. Quit " << std::endl;
         std::cin >> option;
 
-        if (option == 1) {
-            std::cout << std::endl << "You choose Live event" << std::endl;
-            // call function live
-            live(); 
-
-        } else if (option == 2) {
-            std::cout << std::endl << "You choose Stand Up event" << std::endl;
-            // call function standUp
-            standUp(); 
-        } else if (option == 3) {
-            std::cout << std::endl << "You choose film event" << std::endl;
-            // call function film
-            film();
-        } else if (option == 4) {
-            std::cout << "List details of all events" << std::endl;
-            // call function all
-            all();
-        } else if (option != 5) {
-            std::cout << std::endl << "Invalid choice. Please enter 1,2,3 or 4" << std::endl;
+        if (option != 1 || option != 2 || option != 3 || option != 4 || option != 5 |) {
+            std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
         }
+
     } while (option != 5);
 
-    std::cout << "Bye Bye" << std::endl;
+    return option;    
+}   
 
-    return 0;
+void all()
+{
+
 }
