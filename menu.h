@@ -9,14 +9,14 @@
 void live();
 
 /* 
-    To add a booking or cancel booking for stand up event.
+    To add a booking or cancel booking and list details and availability for stand up event.
     @param no parameters
     @return void 
  */
 void standUp();
 
 /* 
-    To add a booking or cancel booking for film event.
+    To add a booking or cancel booking and list details and availability for film event.
     @param no parameters
     @return void 
  */
