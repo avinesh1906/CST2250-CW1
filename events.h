@@ -38,4 +38,12 @@ class StandUp : public Event {
         void booking();
 };
 
+class Film : public Event {
+    private:
+        std::string type;
+
+    public:
+        void booking();
+};
+
 #endif
