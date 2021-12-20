@@ -87,5 +87,20 @@ int menu()
 
 void all(details liveDetails, details standUpDetails, details filmDetails)
 {
+    std::cout << std::endl << "******** Live Event ********" << std::endl;
+    std::cout << "The seat capacity is: " << liveDetails.seatCapacity << std::endl;
+    std::cout << "Seats Available: " << liveDetails.availableSeat << std::endl;
+
+    std::cout << std::endl << "******** Stand Up Event ********" << std::endl;
+    std::cout << "The seat capacity is: " << standUpDetails.seatCapacity << std::endl;
+    std::cout << "Seats Available: " << standUpDetails.availableSeat << std::endl;
+    std::cout << "Seats already allocated are as follows: ";
+    for (int n: standUpDetails.seatAllocated ){
+        std::cout << n << std::endl;
+    }
+
+    std::cout << std::endl << "******** Film Event ********" << std::endl;
+    std::cout << "The seat capacity is: " << liveDetails.seatCapacity << std::endl;
+    std::cout << "Seats Available: " << liveDetails.availableSeat << std::endl;
 
 }
