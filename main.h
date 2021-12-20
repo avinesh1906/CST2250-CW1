@@ -1,5 +1,5 @@
-#ifndef __MENU_H_
-#define __MENU_H_
+#ifndef __MAIN_H_
+#define __MAIN_H_
 
 /* 
     To add a booking or cancel booking for live event.

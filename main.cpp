@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "main.h"
 #include "events.h"
 
 #include <iostream>
