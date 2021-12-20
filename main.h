@@ -31,8 +31,8 @@ void film();
 
 /* 
     To list all events
-    @param no parameters
+    @param liveDetails, standUpDetails, filmDetails stores the current data for each events
     @return void
  */
-void all();
+void all(details liveDetails, details standUpDetails, details filmDetails);
 #endif

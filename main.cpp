@@ -56,7 +56,7 @@ int main()
     } else if (option == 4) {
         std::cout << "List details of all events" << std::endl;
         // call function all
-        all();
+        all(liveDetails, standUpDetails, filmDetails);
     } else {
         std::cout << "Bye Bye" << std::endl;
         return 0;
@@ -76,7 +76,7 @@ int menu()
         std::cout << "5. Quit " << std::endl;
         std::cin >> option;
 
-        if (option != 1 || option != 2 || option != 3 || option != 4 || option != 5 |) {
+        if (option != 1 || option != 2 || option != 3 || option != 4 || option != 5 ) {
             std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
         }
 
@@ -85,7 +85,7 @@ int menu()
     return option;    
 }   
 
-void all()
+void all(details liveDetails, details standUpDetails, details filmDetails)
 {
 
 }
