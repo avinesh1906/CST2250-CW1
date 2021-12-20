@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+ 
 int main()
 {
     details liveDetails, standUpDetails, filmDetails;
@@ -44,7 +44,7 @@ int main()
         // call function film
         // film();
     } else if (option == 4) {
-        std::cout << std::endl << "List details of all events" << std::endl;
+        std::cout << std::endl << "List details for all events" << std::endl;
         // call function all
         all(liveDetails, standUpDetails, filmDetails);
     } else {
@@ -85,7 +85,7 @@ void all(details liveDetails, details standUpDetails, details filmDetails)
     std::cout << std::endl << "******** Stand Up Event ********" << std::endl;
     std::cout << "The seat capacity is: " << standUpDetails.seatCapacity << std::endl;
     std::cout << "Seats Available: " << standUpDetails.availableSeat << std::endl;
-    std::cout << "Seats already allocated are as follows: ";
+    std::cout << "Seats already allocated are as follows: " << std::endl;
     for (int n: standUpDetails.seatAllocated ){
         std::cout << n << std::endl;
     }
