@@ -40,7 +40,9 @@ int main()
     filmDetails.seatAllocated = {};
 
     // call menu
-    menu();
+    if (menu() == 0){
+        return 0;
+    };
 
 }
 
