@@ -4,9 +4,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
- 
+
+
 int main()
 {
+    std::vector <Event*> events;
+
     // details liveDetails, standUpDetails, filmDetails;
     int option;
     int eventMenuChoice;
@@ -22,6 +25,7 @@ int main()
         enterDetails(&liveEvent[i], "live");
     }
 
+    
     option = mainMenu();
     if (option == 1) {    
         std::cout << std::endl << "******** Live Event ********" << std::endl;      
@@ -37,10 +41,12 @@ int main()
             if (eventChoice < 1 && eventChoice > liveSize) {
                 std::cout << "Invalid choice.";
             }
-
         } while (eventChoice < 1 && eventChoice > liveSize);
+
+        events.push_back(new Live(&liveEvent[eventChoice - 1]));
         // call function live
-        live(&liveEvent[eventChoice - 1]); 
+        live(events[0]); 
+
     } else if (option == 2) {
         std::cout << std::endl << "You choose Stand Up event" << std::endl;
         // call function standUp
@@ -123,8 +129,9 @@ int menu(){
     return option;    
 }
 
-void live(details* liveDetails)
+void live(Event* liveDetails)
 {   
+    std::cout << "You choose: " << liveDetails->getName() << std::endl;
     int option = menu();
 
     if (option == 1) {
@@ -135,6 +142,7 @@ void live(details* liveDetails)
     
     } else if (option == 3){
         std::cout << std::endl << "List details and availability for Live Event" << std::endl;
+        std::cout << liveDetails->description();
     } else {
         main();
     }
@@ -152,6 +160,7 @@ void standUp(details liveDetails)
     
     } else if (option == 3){
         std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
+
     } else {
         main();
     }

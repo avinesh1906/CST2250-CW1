@@ -3,17 +3,8 @@
 
 #include <string>
 #include <vector>
-
-
-struct details
-{
-    int id;
-    std::string name;
-    int seatCapacity;
-    int availableSeat;
-    std::vector <int> seatAllocated;
-    std::string filmType;
-};
+#include "events.h"
+#include "struct.h"
 
 
 /* 
@@ -36,7 +27,7 @@ int menu();
     @param liveDetails stores the details for live event
     @return void 
  */
-void live(details* liveDetails);
+void live(Event* liveDetails);
 
 /* 
     To add a booking or cancel booking and list details and availability for stand up event.
