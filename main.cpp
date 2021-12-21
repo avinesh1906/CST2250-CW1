@@ -150,4 +150,19 @@ void standUp(details liveDetails)
     }
 }
 
+void film(details liveDetails)
+{
+    int option = mainMenu();
 
+    if (option == 1) {
+        std::cout << std::endl << "Booking for Film Event" << std::endl;
+        
+    } else if (option == 2){
+        std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
+    
+    } else if (option == 3){
+        std::cout << std::endl << "List details and availability for Film Event" << std::endl;
+    } else {
+        main();
+    }
+}
