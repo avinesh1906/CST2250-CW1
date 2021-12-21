@@ -27,12 +27,14 @@ class Event {
 
         //base class
         virtual int booking() = 0;
+        virtual int cancel() = 0;
 };
 
 class Live : public Event {
     public:
         Live(details* array);
         int booking();
+        int cancel();
 };
 
 // class StandUp : public Event {

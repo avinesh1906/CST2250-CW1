@@ -155,7 +155,8 @@ void live(Event* liveDetails, details* array)
 
     } else if (option == 2){
         std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-    
+        array->availableSeat = liveDetails->cancel();
+
     } else if (option == 3){
         std::cout << std::endl << "List details and availability for Live Event" << std::endl;
         std::cout << liveDetails->description();
