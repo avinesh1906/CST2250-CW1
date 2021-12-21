@@ -132,3 +132,22 @@ void live(details liveDetails)
         main();
     }
 }
+
+void standUp(details liveDetails)
+{
+    int option = mainMenu();
+
+    if (option == 1) {
+        std::cout << std::endl << "Booking for Standing Event" << std::endl;
+        
+    } else if (option == 2){
+        std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
+    
+    } else if (option == 3){
+        std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
+    } else {
+        main();
+    }
+}
+
+
