@@ -12,6 +12,6 @@ Event::~Event()
 }
 
 std::string Event::description(){
-    return name + "has " +  std::to_string(availableSeat) + " avaiable seats" ;
+    return name + "has " +  std::to_string(availableSeat) +  " available seats and having a maximum capacity of "  + std::to_string(maxCapacity);
 }
 

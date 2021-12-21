@@ -7,34 +7,40 @@
  
 int main()
 {
-    details liveDetails, standUpDetails, filmDetails;
+    // details liveDetails, standUpDetails, filmDetails;
     int option;
-
+    int eventMenuChoice;
+    int eventChoice;
     // SHOULD USE dynamically allocated structure to read/save to a file (week7-lab5))
 
-    liveDetails.id = 1; 
-    liveDetails.name = "Live";
-    liveDetails.seatCapacity = 300;
-    liveDetails.availableSeat = 294;
-    liveDetails.seatAllocated = {};
+    // dynamically allocated array
+    int liveSize = 3;
+    details* liveEvent = new details[liveSize];
 
-    standUpDetails.id = 2; 
-    standUpDetails.name = "Stand Up";
-    standUpDetails.seatCapacity = 200;
-    standUpDetails.availableSeat = 194;
-    standUpDetails.seatAllocated = {1, 2, 50, 121, 195,200};
-
-    filmDetails.id = 3; 
-    filmDetails.name = "Film";
-    filmDetails.seatCapacity = 200;
-    filmDetails.availableSeat = 175;
-    filmDetails.seatAllocated = {};
+    for (int i = 0; i < liveSize; i++){
+        // pass array by reference
+        enterDetails(&liveEvent[i], "live");
+    }
 
     option = mainMenu();
-    if (option == 1) {
-        std::cout << std::endl << "You choose Live event" << std::endl;
+    if (option == 1) {    
+        std::cout << std::endl << "******** Live Event ********" << std::endl;      
+        for (int i = 0; i < liveSize; i++){
+            std::cout << (i+1) << ": ";
+            printName(&liveEvent[i]);
+        }
+        std::cout << "Choose your event: ";
+
+        do {
+            std::cin >> eventChoice;
+
+            if (eventChoice < 1 && eventChoice > liveSize) {
+                std::cout << "Invalid choice.";
+            }
+
+        } while (eventChoice < 1 && eventChoice > liveSize);
         // call function live
-        live(liveDetails); 
+        live(&liveEvent[eventChoice - 1]); 
     } else if (option == 2) {
         std::cout << std::endl << "You choose Stand Up event" << std::endl;
         // call function standUp
@@ -46,9 +52,10 @@ int main()
     } else if (option == 4) {
         std::cout << std::endl << "List details for all events" << std::endl;
         // call function all
-        all(liveDetails, standUpDetails, filmDetails);
+        // all(liveDetails, standUpDetails, filmDetails);
     } else {
         std::cout << "Bye Bye" << std::endl;
+        delete[] liveEvent;
         return 0;
     }
 
@@ -64,7 +71,7 @@ int mainMenu()
         std::cout << "3. Film " << std::endl;
         std::cout << "4. List details for all events " << std::endl;
         std::cout << "5. Quit " << std::endl;
-        std::cout << std::endl << "Enter your choice: " << std::endl;
+        std::cout << std::endl << "Enter your choice: " ;
         std::cin >> option;
 
         if (option <= 1 && option >= 5 ) {
@@ -116,9 +123,9 @@ int menu(){
     return option;    
 }
 
-void live(details liveDetails)
-{
-    int option = mainMenu();
+void live(details* liveDetails)
+{   
+    int option = menu();
 
     if (option == 1) {
         std::cout << std::endl << "Booking for Live Event" << std::endl;
@@ -165,4 +172,20 @@ void film(details liveDetails)
     } else {
         main();
     }
+}
+
+void enterDetails(details* array, std::string eventType){
+    if (eventType == "live"){
+        array->id = 1;
+        array->name = "Komiko";
+        array->availableSeat = 294;
+        array->seatCapacity = 300;
+    }
+
+    
+
+}
+
+void printName(details* array){
+    std::cout << array->name << std::endl;
 }
