@@ -26,13 +26,13 @@ class Event {
         std::string getName();
 
         //base class
-        virtual void booking() = 0;
+        virtual int booking() = 0;
 };
 
 class Live : public Event {
     public:
         Live(details* array);
-        void booking();
+        int booking();
 };
 
 // class StandUp : public Event {

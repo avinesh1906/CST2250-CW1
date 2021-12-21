@@ -6,19 +6,20 @@
 #include <vector>
 
 
+int liveSize = 2;
+details* liveEvent = new details[liveSize];
+
 int main()
 {
-    std::vector <Event*> events;
-
     // details liveDetails, standUpDetails, filmDetails;
     int option;
     int eventMenuChoice;
     int eventChoice;
     // SHOULD USE dynamically allocated structure to read/save to a file (week7-lab5))
-
+    
     // dynamically allocated array
-    int liveSize = 2;
-    details* liveEvent = new details[liveSize];
+    
+    
 
     // for (int i = 0; i < liveSize; i++){
     //     // pass array by reference
@@ -33,8 +34,30 @@ int main()
     liveEvent[1].availableSeat = 150;
     liveEvent[1].seatCapacity = 300;
 
-    option = mainMenu();
-    if (option == 1) {    
+
+
+    mainMenu();
+
+
+}
+
+int mainMenu()
+{
+    int option;
+    int eventMenuChoice;
+    int eventChoice;
+    std::vector <Event*> events;
+    do {
+        std::cout << std::endl << "******** Main Menu ********" << std::endl;
+        std::cout << "1: Live event" << std::endl;
+        std::cout << "2. Stand Up" << std::endl;
+        std::cout << "3. Film " << std::endl;
+        std::cout << "4. List details for all events " << std::endl;
+        std::cout << "5. Quit " << std::endl;
+        std::cout << std::endl << "Enter your choice: " ;
+        std::cin >> option;
+
+        if (option == 1) {    
         std::cout << std::endl << "******** Live Event ********" << std::endl;      
         for (int i = 0; i < liveSize; i++){
             std::cout << (i+1) << ": ";
@@ -52,7 +75,7 @@ int main()
 
         events.push_back(new Live(&liveEvent[eventChoice - 1]));
         // call function live
-        live(events[0]); 
+        live(events[0], &liveEvent[eventChoice - 1]); 
 
     } else if (option == 2) {
         std::cout << std::endl << "You choose Stand Up event" << std::endl;
@@ -71,21 +94,6 @@ int main()
         delete[] liveEvent;
         return 0;
     }
-
-}
-
-int mainMenu()
-{
-    int option;
-    do {
-        std::cout << std::endl << "******** Main Menu ********" << std::endl;
-        std::cout << "1: Live event" << std::endl;
-        std::cout << "2. Stand Up" << std::endl;
-        std::cout << "3. Film " << std::endl;
-        std::cout << "4. List details for all events " << std::endl;
-        std::cout << "5. Quit " << std::endl;
-        std::cout << std::endl << "Enter your choice: " ;
-        std::cin >> option;
 
         if (option <= 1 && option >= 5 ) {
             std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
@@ -136,15 +144,15 @@ int menu(){
     return option;    
 }
 
-void live(Event* liveDetails)
+void live(Event* liveDetails, details* array)
 {   
     std::cout << "You choose: " << liveDetails->getName() << std::endl;
     int option = menu();
 
     if (option == 1) {
         std::cout << std::endl << "Booking for Live Event" << std::endl;
-        liveDetails->booking();
-        
+        array->availableSeat = liveDetails->booking();
+
     } else if (option == 2){
         std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
     
@@ -155,12 +163,12 @@ void live(Event* liveDetails)
         main();
     }
 
-    main();
+    mainMenu();
 }
 
 void standUp(details liveDetails)
 {
-    int option = mainMenu();
+    int option = 0;
 
     if (option == 1) {
         std::cout << std::endl << "Booking for Standing Event" << std::endl;
@@ -178,7 +186,7 @@ void standUp(details liveDetails)
 
 void film(details liveDetails)
 {
-    int option = mainMenu();
+    int option = 0;
 
     if (option == 1) {
         std::cout << std::endl << "Booking for Film Event" << std::endl;
@@ -200,9 +208,6 @@ void enterDetails(details* array, std::string eventType){
         array->availableSeat = 294;
         array->seatCapacity = 300;
     }
-
-    
-
 }
 
 void printName(details* array){

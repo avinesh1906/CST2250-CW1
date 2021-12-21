@@ -22,20 +22,21 @@ std::string Event::getName(){
     return name;
 }
 
+
 Live::Live(details* array) : Event(array)
 {
-    
+
 }
 
-void Live::booking()
+int Live::booking()
 {
     int seatToBeBooked;
-    std::cout << maxCapacity << std::endl;
-    std::cout << availableSeat << std::endl;
+    std::cout <<"Theatre maximum capacity: " <<  maxCapacity << std::endl;
+    std::cout << "Number of seats already booked" << availableSeat << std::endl;
     if (maxCapacity > availableSeat){
-        std::cout << "You can book " << std::endl;
+        std::cout << "You can proceed with booking " << std::endl;
         do {
-            std::cout << "How much seat to book? " << std::endl;
+            std::cout << std::endl << "How much seat to book? " << std::endl;
             std::cin >> seatToBeBooked;
             if ((availableSeat - seatToBeBooked) < 0) {
                 std::cout << "Error. Maximum Seat Capacity reached." << std::endl;
@@ -48,5 +49,5 @@ void Live::booking()
 
     availableSeat -= seatToBeBooked;
     std::cout << availableSeat << std::endl;
-    
+    return availableSeat;
 }
