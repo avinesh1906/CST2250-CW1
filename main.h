@@ -16,18 +16,26 @@ struct details
 
 
 /* 
-    To display the menu for the staff to make its choice.
+    To display the main menu for the staff to choose between events and list all events' details.
     @param no parameter
     @return int
  */
+int mainMenu();
+
+/* 
+    To display the menu for booking, refund or list details of a particular chosen event
+    @param no parameter
+    @return int    
+ */
+
 int menu();
 
 /* 
-    To add a booking or cancel booking for live event.
-    @param no parameters
+    To add a booking or cancel booking and list details and availability for live event.
+    @param liveDetails stores the details for live event
     @return void 
  */
-void live();
+void live(details liveDetails);
 
 /* 
     To add a booking or cancel booking and list details and availability for stand up event.

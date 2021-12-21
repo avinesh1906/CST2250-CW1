@@ -1,5 +1,5 @@
 #include "main.h"
-// #include "events.h"
+#include "events.h"
 
 #include <iostream>
 #include <string>
@@ -30,11 +30,11 @@ int main()
     filmDetails.availableSeat = 175;
     filmDetails.seatAllocated = {};
 
-    option = menu();
+    option = mainMenu();
     if (option == 1) {
         std::cout << std::endl << "You choose Live event" << std::endl;
         // call function live
-        // live(); 
+        live(liveDetails); 
     } else if (option == 2) {
         std::cout << std::endl << "You choose Stand Up event" << std::endl;
         // call function standUp
@@ -54,7 +54,7 @@ int main()
 
 }
 
-int menu()
+int mainMenu()
 {
     int option;
     do {
@@ -94,4 +94,29 @@ void all(details liveDetails, details standUpDetails, details filmDetails)
     std::cout << "The seat capacity is: " << liveDetails.seatCapacity << std::endl;
     std::cout << "Seats Available: " << liveDetails.availableSeat << std::endl;
 
+}
+
+int menu(){
+    int option;
+    do {
+        std::cout << std::endl << "******** Menu ********" << std::endl;
+        std::cout << "1: Booking" << std::endl;
+        std::cout << "2. Cancel Booking" << std::endl;
+        std::cout << "3. List Details " << std::endl;
+        std::cout << "4. Back to menu " << std::endl;
+        std::cout << std::endl << "Enter your choice: " << std::endl;
+        std::cin >> option;
+
+        if (option <= 1 && option >= 4) {
+            std::cout << std::endl << "Invalid choice. Please enter 1,2,3 or 4 " << std::endl;
+        }
+
+    } while (option <= 1 && option >= 4);
+
+    return option;    
+}
+
+void live(details liveDetails)
+{
+    
 }
