@@ -28,11 +28,11 @@ Live::Live(details* array) : Event(array)
 
 }
 
-int Live::booking()
+int Event::booking()
 {
     int seatToBeBooked = 0;
     std::cout <<"Theatre maximum capacity: " <<  maxCapacity << std::endl;
-    std::cout << "Number of seats already booked" << availableSeat << std::endl;
+    std::cout << "Number of seats already booked: " << availableSeat << std::endl;
     if (maxCapacity > availableSeat){
         std::cout << "You can proceed with booking " << std::endl;
         do {
@@ -51,7 +51,7 @@ int Live::booking()
     return availableSeat;
 }
 
-int Live::cancel()
+int Event::cancel()
 {
     int seatsToCancel = 0;
     std::cout << "Number of seats already booked" << availableSeat << std::endl;

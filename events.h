@@ -26,15 +26,14 @@ class Event {
         std::string getName();
 
         //base class
-        virtual int booking() = 0;
-        virtual int cancel() = 0;
+        int booking();
+        int cancel();
 };
 
 class Live : public Event {
     public:
         Live(details* array);
-        int booking();
-        int cancel();
+
 };
 
 // class StandUp : public Event {
