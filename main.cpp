@@ -17,15 +17,22 @@ int main()
     // SHOULD USE dynamically allocated structure to read/save to a file (week7-lab5))
 
     // dynamically allocated array
-    int liveSize = 3;
+    int liveSize = 2;
     details* liveEvent = new details[liveSize];
 
-    for (int i = 0; i < liveSize; i++){
-        // pass array by reference
-        enterDetails(&liveEvent[i], "live");
-    }
+    // for (int i = 0; i < liveSize; i++){
+    //     // pass array by reference
+    //     enterDetails(&liveEvent[i], "live");
+    // }
 
-    
+    liveEvent[0].name = "Komiko";
+    liveEvent[0].availableSeat = 294;
+    liveEvent[0].seatCapacity = 300;
+
+    liveEvent[1].name = "Mr Bean";
+    liveEvent[1].availableSeat = 150;
+    liveEvent[1].seatCapacity = 300;
+
     option = mainMenu();
     if (option == 1) {    
         std::cout << std::endl << "******** Live Event ********" << std::endl;      
@@ -136,6 +143,7 @@ void live(Event* liveDetails)
 
     if (option == 1) {
         std::cout << std::endl << "Booking for Live Event" << std::endl;
+        liveDetails->booking();
         
     } else if (option == 2){
         std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
@@ -146,6 +154,8 @@ void live(Event* liveDetails)
     } else {
         main();
     }
+
+    main();
 }
 
 void standUp(details liveDetails)
