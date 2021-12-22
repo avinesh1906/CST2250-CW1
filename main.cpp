@@ -7,8 +7,9 @@
 
 
 int liveSize = 2;
+int standUpSize = 2;
 details* liveEvent = new details[liveSize];
-
+details* standUpEvent = new details[standUpSize];
 int main()
 {
     // details liveDetails, standUpDetails, filmDetails;
@@ -34,7 +35,15 @@ int main()
     liveEvent[1].availableSeat = 150;
     liveEvent[1].seatCapacity = 300;
 
+    standUpEvent[0].name = "90 Favelas";
+    standUpEvent[0].availableSeat = 195;
+    standUpEvent[0].seatCapacity = 200;
+    standUpEvent[0].seatTrack = {1,50,150,25,15};
 
+    standUpEvent[1].name = "DSP Music";
+    standUpEvent[1].availableSeat = 197;
+    standUpEvent[1].seatCapacity = 200;
+    standUpEvent[1].seatTrack = {1,75,126};
 
     mainMenu();
 
@@ -58,46 +67,60 @@ int mainMenu()
         std::cin >> option;
 
         if (option == 1) {    
-        std::cout << std::endl << "******** Live Event ********" << std::endl;      
-        for (int i = 0; i < liveSize; i++){
-            std::cout << (i+1) << ": ";
-            printName(&liveEvent[i]);
-        }
-        std::cout << "Choose your event: ";
-
-        do {
-            std::cin >> eventChoice;
-
-            if (eventChoice < 1 && eventChoice > liveSize) {
-                std::cout << "Invalid choice.";
+            std::cout << std::endl << "******** Live Event ********" << std::endl;      
+            for (int i = 0; i < liveSize; i++){
+                std::cout << (i+1) << ": ";
+                printName(&liveEvent[i]);
             }
-        } while (eventChoice < 1 && eventChoice > liveSize);
+            std::cout << "Choose your event: ";
 
-        events.push_back(new Live(&liveEvent[eventChoice - 1]));
-        // call function live
-        live(events[0], &liveEvent[eventChoice - 1]); 
+            do {
+                std::cin >> eventChoice;
 
-    } else if (option == 2) {
-        std::cout << std::endl << "You choose Stand Up event" << std::endl;
-        // call function standUp
-        // standUp(); 
-    } else if (option == 3) {
-        std::cout << std::endl << "You choose film event" << std::endl;
-        // call function film
-        // film();
-    } else if (option == 4) {
-        std::cout << std::endl << "List details for all events" << std::endl;
-        // call function all
-        // all(liveDetails, standUpDetails, filmDetails);
-    } else {
-        std::cout << "Bye Bye" << std::endl;
-        delete[] liveEvent;
-        return 0;
-    }
+                if (eventChoice < 1 && eventChoice > liveSize) {
+                    std::cout << "Invalid choice.";
+                }
+            } while (eventChoice < 1 && eventChoice > liveSize);
 
-        if (option <= 1 && option >= 5 ) {
-            std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
+            events.push_back(new Live(&liveEvent[eventChoice - 1]));
+            // call function live
+            live(events[0], &liveEvent[eventChoice - 1]); 
+
+        } else if (option == 2) {
+            std::cout << std::endl << "******** Live Event ********" << std::endl;      
+            for (int i = 0; i < standUpSize; i++){
+                std::cout << (i+1) << ": ";
+                printName(&standUpEvent[i]);
+            }
+            std::cout << "Choose your event: ";
+
+            do {
+                std::cin >> eventChoice;
+
+                if (eventChoice < 1 && eventChoice > standUpSize) {
+                    std::cout << "Invalid choice.";
+                }
+            } while (eventChoice < 1 && eventChoice > standUpSize);
+
+            events.push_back(new StandUp(&standUpEvent[eventChoice - 1]));
+            standUp(events[0], &standUpEvent[eventChoice - 1]);
+        } else if (option == 3) {
+            std::cout << std::endl << "You choose film event" << std::endl;
+            // call function film
+            // film();
+        } else if (option == 4) {
+            std::cout << std::endl << "List details for all events" << std::endl;
+            // call function all
+            // all(liveDetails, standUpDetails, filmDetails);
+        } else {
+            std::cout << "Bye Bye" << std::endl;
+            delete[] liveEvent;
+            return 0;
         }
+
+            if (option <= 1 && option >= 5 ) {
+                std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
+            }
 
     } while (option <= 1 && option >= 5);
 
@@ -114,7 +137,7 @@ void all(details liveDetails, details standUpDetails, details filmDetails)
     std::cout << "The seat capacity is: " << standUpDetails.seatCapacity << std::endl;
     std::cout << "Seats Available: " << standUpDetails.availableSeat << std::endl;
     std::cout << "Seats already allocated are as follows: " << std::endl;
-    for (int n: standUpDetails.seatAllocated ){
+    for (int n: standUpDetails.seatTrack ){
         std::cout << n << std::endl;
     }
 
@@ -151,11 +174,11 @@ void live(Event* liveDetails, details* array)
 
     if (option == 1) {
         std::cout << std::endl << "Booking for Live Event" << std::endl;
-        array->availableSeat = liveDetails->booking();
+        liveDetails->booking();
 
     } else if (option == 2){
         std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-        array->availableSeat = liveDetails->cancel();
+        liveDetails->cancel();
 
     } else if (option == 3){
         std::cout << std::endl << "List details and availability for Live Event" << std::endl;
@@ -167,13 +190,15 @@ void live(Event* liveDetails, details* array)
     mainMenu();
 }
 
-void standUp(details liveDetails)
+void standUp(Event* standUpDetails, details* array)
 {
-    int option = 0;
-
+    std::cout << "You choose: " << standUpDetails->getName() << std::endl;
+    int option = menu();
+    int noOfBooking;
     if (option == 1) {
         std::cout << std::endl << "Booking for Standing Event" << std::endl;
-        
+        standUpDetails->booking();
+
     } else if (option == 2){
         std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
     
@@ -183,6 +208,7 @@ void standUp(details liveDetails)
     } else {
         main();
     }
+    mainMenu();
 }
 
 void film(details liveDetails)

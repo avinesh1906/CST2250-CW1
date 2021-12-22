@@ -10,7 +10,7 @@ struct details
     std::string name;
     int seatCapacity;
     int availableSeat;
-    std::vector <int> seatAllocated;
+    std::vector <int> seatTrack;
     std::string filmType;
 };
 
