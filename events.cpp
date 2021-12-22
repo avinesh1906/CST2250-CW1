@@ -19,7 +19,7 @@ Event::~Event()
 
 void Live::description(){
 
-    std::cout <<  name + " has " +  std::to_string(*(availableSeat)) +  " available seats";
+    std::cout <<  name + " has " +  std::to_string(*(availableSeat)) +  " available seats" << std::endl;
     
 }
 
@@ -57,7 +57,7 @@ int Live::booking()
 int Live::cancel()
 {
     int seatsToCancel = 0;
-    std::cout << "Number of seats available for booking: " << *(availableSeat) << std::endl;
+    std::cout << "Number of seats already booked: " << (maxCapacity - *(availableSeat)) << std::endl;
     if (*(availableSeat) != maxCapacity){
         std::cout << "You can proceed with cancellation" << std::endl;
         do {
