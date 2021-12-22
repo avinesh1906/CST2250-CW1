@@ -27,6 +27,11 @@ std::string Event::getName(){
     return name;
 }
 
+int Event::getRef()
+{
+    return ref;
+}
+
 Live::Live(details* array) : Event(array)
 {
 

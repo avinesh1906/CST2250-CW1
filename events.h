@@ -23,7 +23,7 @@ class Event {
         //member functions
         virtual void description() = 0;
         std::string getName();
-        
+        int getRef();
 
         //base class
         virtual int booking() = 0;

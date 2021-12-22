@@ -155,9 +155,16 @@ int mainMenu()
             film(events[0], filmFunction); 
         } else if (option == 4) {
             std::cout << std::endl << "List details for all events" << std::endl;
-            
+            int ref = 1;
             for(unsigned i = 0; i < test.size(); i++){
-                test[i]->description() ;
+                if (ref == test[i]->getRef()){
+                    test[i]->description() ;
+                } else {
+                    std::cout << std::endl;
+                    test[i]->description() ;
+                    ref = test[i]->getRef();
+                }
+                
             }
         } else {
             std::cout << "Bye Bye" << std::endl;
