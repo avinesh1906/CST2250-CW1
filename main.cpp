@@ -73,16 +73,15 @@ int mainMenu()
     int eventMenuChoice;
     int eventChoice;
     std::vector <Event*> events;
-    std::vector <Event*> test;
 
     for (int i = 0; i < liveSize; i++){
-        test.push_back(new Live(&liveEvent[i]));
+        events.push_back(new Live(&liveEvent[i]));
     }
     for (int i = 0; i < standUpSize; i++){
-        test.push_back(new StandUp(&standUpEvent[i]));
+        events.push_back(new StandUp(&standUpEvent[i]));
     }
     for (int i = 0; i < filmSize; i++){
-        test.push_back(new Film(&filmEvent[i]));
+        events.push_back(new Film(&filmEvent[i]));
     }
     do {
         std::cout << std::endl << "******** Main Menu ********" << std::endl;
@@ -130,9 +129,8 @@ int mainMenu()
                 }
             } while (eventChoice < 1 && eventChoice > standUpSize);
 
-            events.push_back(new StandUp(&standUpEvent[eventChoice - 1]));
-            StandUp* standUP = new StandUp(&standUpEvent[eventChoice - 1]);
-            standUp(events[0], standUP);
+            Event* standUP = new StandUp(&standUpEvent[eventChoice - 1]);
+            standUp(standUP);
         } else if (option == 3) {
             std::cout << std::endl << "******** Film Event ********" << std::endl;      
             for (int i = 0; i < filmSize; i++){
@@ -149,23 +147,22 @@ int mainMenu()
                 }
             } while (eventChoice < 1 && eventChoice > filmSize);
 
-            events.push_back(new Film(&filmEvent[eventChoice - 1]));
-            Film* filmFunction = new Film(&filmEvent[eventChoice - 1]);
+            Event* filmFunction = new Film(&filmEvent[eventChoice - 1]);
             // call function live
-            film(events[0], filmFunction); 
+            film(filmFunction); 
         } else if (option == 4) {
             std::cout << std::endl << "List details for all events" << std::endl;
             int ref = 1;
-            for(unsigned i = 0; i < test.size(); i++){
-                if (ref == test[i]->getRef()){
-                    test[i]->description() ;
+            for(unsigned i = 0; i < events.size(); i++){
+                if (ref == events[i]->getRef()){
+                    events[i]->description() ;
                 } else {
                     std::cout << std::endl;
-                    test[i]->description() ;
-                    ref = test[i]->getRef();
-                }
-                
+                    events[i]->description() ;
+                    ref = events[i]->getRef();
+                }   
             }
+            mainMenu();
         } else {
             std::cout << "Bye Bye" << std::endl;
             delete[] liveEvent;
@@ -181,13 +178,6 @@ int mainMenu()
     return option;    
 }   
 
-// void all()
-// {
-//     std::cout <<  "******** Live Event ********" << std::endl;
-//     std::cout <<  "******** Stand-Up Event ********" << std::endl;
-//     std::cout <<  "******** Film Event ********" << std::endl;    
-//     for(unsigned i = 0; i < )
-// }
 
 int menu(){
     int option;
@@ -232,7 +222,7 @@ void live(Event* liveDetails)
     mainMenu();
 }
 
-void standUp(Event* standUpDetails, StandUp *array)
+void standUp(Event* standUpDetails)
 {
     std::cout << "You choose: " << standUpDetails->getName() << std::endl;
     int option = menu();
@@ -253,7 +243,7 @@ void standUp(Event* standUpDetails, StandUp *array)
     mainMenu();
 }
 
-void film(Event* filmDetails, Film *array)
+void film(Event* filmDetails)
 {
     std::cout << "You choose: " << filmDetails->getName() << std::endl;
     int option = menu();

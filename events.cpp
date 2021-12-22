@@ -45,7 +45,7 @@ int Live::booking()
 {
     int seatToBeBooked = 0;
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
-    std::cout << "Number of seats available for booking:: " << *(availableSeat) << std::endl;
+    std::cout << "Number of seats available for booking: " << *(availableSeat) << std::endl;
     if (getMaxCapacity() > *(availableSeat)){
         std::cout << "You can proceed with booking " << std::endl;
         do {
