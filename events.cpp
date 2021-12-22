@@ -6,6 +6,7 @@
 
 Event::Event(details* array)
 {
+    this->ref = array->ref;
     this->name = array->name;
     this->availableSeat = &(array->availableSeat);
     this->maxCapacity = array->seatCapacity;
@@ -16,8 +17,10 @@ Event::~Event()
 
 }
 
-std::string Event::description(){
-    return name + " has " +  std::to_string(*(availableSeat)) +  " available seats";
+void Live::description(){
+
+    std::cout <<  name + " has " +  std::to_string(*(availableSeat)) +  " available seats";
+    
 }
 
 std::string Event::getName(){
@@ -165,13 +168,14 @@ int StandUp::cancel()
     return 0;
 }
 
-void StandUp::displaySeat(){
+void StandUp::description(){
     std::cout << name << " has the following booked seats: " << std::endl;
     for (int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
     std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
     std::cout << "A total of " << *(availableSeat) << " available seats out of " << maxCapacity << " seats." << std::endl;
+    
 }
 
 Film::Film(details* array) : Event(array)
@@ -223,9 +227,10 @@ int Film::cancel()
     return seatsToCancel;
 }
 
-void Film::displayFilm()
+void Film::description()
 {
     std::cout << "Film " << name << " of film type " 
     << type << " has " << *(availableSeat) << " available seats out of " 
     << maxCapacity << " seats." << std::endl;
+
 }

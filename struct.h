@@ -6,7 +6,7 @@
 
 struct details
 {
-    int id;
+    int ref;
     std::string name;
     int seatCapacity;
     int availableSeat;

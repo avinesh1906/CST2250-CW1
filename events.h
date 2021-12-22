@@ -7,7 +7,7 @@
 
 class Event {
     private:
-        int id;
+        int ref;
     protected:
         std::string name;
         int maxCapacity;
@@ -21,7 +21,7 @@ class Event {
         virtual ~Event();
 
         //member functions
-        std::string description();
+        virtual void description() = 0;
         std::string getName();
         
 
@@ -34,6 +34,7 @@ class Event {
 class Live : public Event {
     public:
         Live(details* array);
+        void description();
         int booking();
         int cancel();
 };
@@ -44,9 +45,10 @@ class StandUp : public Event {
 
     public:
         StandUp(details* array);
+        void description();
         int booking();
         int cancel();
-        void displaySeat();
+        // void displaySeat();
         // void allocateSeat(int noOfBooking);
 };
 
@@ -56,9 +58,10 @@ class Film : public Event {
 
     public:
         Film(details* array);
+        void description();
         int booking();
         int cancel();
-        void displayFilm();
+        // std::string displayFilm();
 };
 
 #endif
