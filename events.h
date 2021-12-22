@@ -8,9 +8,9 @@
 class Event {
     private:
         int ref;
-    protected:
         std::string name;
         int maxCapacity;
+    protected:
         int* availableSeat;
     
     public:
@@ -24,6 +24,7 @@ class Event {
         virtual void description() = 0;
         std::string getName();
         int getRef();
+        int getMaxCapacity();
 
         //base class
         virtual int booking() = 0;
