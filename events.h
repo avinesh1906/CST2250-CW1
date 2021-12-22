@@ -50,13 +50,15 @@ class StandUp : public Event {
         // void allocateSeat(int noOfBooking);
 };
 
-// class Film : public Event {
-//     private:
-//         std::string type;
+class Film : public Event {
+    private:
+        std::string type;
 
-//     public:
-//         Film(details* array);
-//         void booking();
-// };
+    public:
+        Film(details* array);
+        int booking();
+        int cancel();
+        void displayFilm();
+};
 
 #endif

@@ -27,21 +27,21 @@ int menu();
     @param liveDetails stores the details for live event
     @return void 
  */
-void live(Event* liveDetails, details* array);
+void live(Event* liveDetails);
 
 /* 
     To add a booking or cancel booking and list details and availability for stand up event.
     @param no parameters
     @return void 
  */
-void standUp(Event* liveDetails, StandUp *array);
+void standUp(Event* standUpDetails, StandUp *array);
 
 /* 
     To add a booking or cancel booking and list details and availability for film event.
     @param no parameters
     @return void 
  */
-void film();
+void film(Event* filmDetails, Film *array);
 
 /* 
     To list all events

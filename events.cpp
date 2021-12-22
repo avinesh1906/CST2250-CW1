@@ -33,7 +33,7 @@ int Live::booking()
 {
     int seatToBeBooked = 0;
     std::cout <<"Theatre maximum capacity: " <<  maxCapacity << std::endl;
-    std::cout << "Number of seats already booked: " << *(availableSeat) << std::endl;
+    std::cout << "Number of seats available for booking:: " << *(availableSeat) << std::endl;
     if (maxCapacity > *(availableSeat)){
         std::cout << "You can proceed with booking " << std::endl;
         do {
@@ -54,7 +54,7 @@ int Live::booking()
 int Live::cancel()
 {
     int seatsToCancel = 0;
-    std::cout << "Number of seats already booked: " << *(availableSeat) << std::endl;
+    std::cout << "Number of seats available for booking: " << *(availableSeat) << std::endl;
     if (*(availableSeat) != maxCapacity){
         std::cout << "You can proceed with cancellation" << std::endl;
         do {
@@ -84,7 +84,7 @@ int StandUp::booking()
     int seatToBeBooked = 0;
     int seatNo;
     std::cout <<"Theatre maximum capacity: " <<  maxCapacity << std::endl;
-    std::cout << "Number of seats already booked: " << *(availableSeat) << std::endl;
+    std::cout << "Number of seats available for booking: " <<  *(availableSeat) << std::endl;
     std::cout << "Seats already booked: " << std::endl;
     for (int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
@@ -123,7 +123,7 @@ int StandUp::cancel()
 {
     int seatsToCancel = 0;
     int seatNo;
-    std::cout << "Number of seats already booked: " << *(availableSeat) << std::endl;
+    std::cout << "Number of seats already booked: " << maxCapacity - *(availableSeat) << std::endl;
     std::cout << "Seats already booked: " << std::endl;
     for (int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
@@ -172,4 +172,60 @@ void StandUp::displaySeat(){
     }
     std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
     std::cout << "A total of " << *(availableSeat) << " available seats out of " << maxCapacity << " seats." << std::endl;
+}
+
+Film::Film(details* array) : Event(array)
+{
+    this->type = array->filmType;
+}
+
+int Film::booking()
+{
+    int seatToBeBooked = 0;
+    std::cout <<"Theatre maximum capacity: " <<  maxCapacity << std::endl;
+    std::cout << "Number of seats available for booking: " <<  *(availableSeat) << std::endl;
+    if (maxCapacity > *(availableSeat)){
+        std::cout << "You can proceed with booking " << std::endl;
+        do {
+            std::cout << std::endl << "How much seat to book? " << std::endl;
+            std::cin >> seatToBeBooked;
+            if ((*(availableSeat) - seatToBeBooked) < 0) {
+                std::cout << "Error. Maximum Seat Capacity reached." << std::endl;
+            }
+        } while ((*(availableSeat) - seatToBeBooked) < 0);
+        
+    } else {
+        std::cout << "No more seats available " << std::endl;
+    }
+    *(availableSeat) -= seatToBeBooked;
+    return seatToBeBooked;
+}
+
+int Film::cancel()
+{
+    int seatsToCancel = 0;
+    std::cout << "Number of seats already booked: " << maxCapacity - *(availableSeat) << std::endl;
+    if (*(availableSeat) != maxCapacity){
+        std::cout << "You can proceed with cancellation" << std::endl;
+        do {
+            std::cout << "How many booking to cancel? " << std::endl;
+            std::cin >> seatsToCancel;
+            if ((*(availableSeat) + seatsToCancel) > maxCapacity){
+                std::cout << "Error. Cannot proceed with cancellation" << std::endl;
+            }
+
+        } while ((*(availableSeat) + seatsToCancel) > maxCapacity);
+    } else {
+        std::cout << "There is no booking to cancel" << std::endl;
+    }
+
+    *(availableSeat) += seatsToCancel;
+    return seatsToCancel;
+}
+
+void Film::displayFilm()
+{
+    std::cout << "Film " << name << " of film type " 
+    << type << " has " << *(availableSeat) << " available seats out of " 
+    << maxCapacity << " seats." << std::endl;
 }
