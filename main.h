@@ -34,7 +34,7 @@ void live(Event* liveDetails, details* array);
     @param no parameters
     @return void 
  */
-void standUp(Event* liveDetails, details* array);
+void standUp(Event* liveDetails, StandUp *array);
 
 /* 
     To add a booking or cancel booking and list details and availability for film event.

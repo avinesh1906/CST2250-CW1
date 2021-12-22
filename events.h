@@ -23,6 +23,7 @@ class Event {
         //member functions
         std::string description();
         std::string getName();
+        
 
         //base class
         virtual int booking() = 0;
@@ -45,6 +46,7 @@ class StandUp : public Event {
         StandUp(details* array);
         int booking();
         int cancel();
+        void displaySeat();
         // void allocateSeat(int noOfBooking);
 };
 

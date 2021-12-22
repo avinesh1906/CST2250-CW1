@@ -103,7 +103,8 @@ int mainMenu()
             } while (eventChoice < 1 && eventChoice > standUpSize);
 
             events.push_back(new StandUp(&standUpEvent[eventChoice - 1]));
-            standUp(events[0], &standUpEvent[eventChoice - 1]);
+            StandUp* standUP = new StandUp(&standUpEvent[eventChoice - 1]);
+            standUp(events[0], standUP);
         } else if (option == 3) {
             std::cout << std::endl << "You choose film event" << std::endl;
             // call function film
@@ -190,7 +191,7 @@ void live(Event* liveDetails, details* array)
     mainMenu();
 }
 
-void standUp(Event* standUpDetails, details* array)
+void standUp(Event* standUpDetails, StandUp *array)
 {
     std::cout << "You choose: " << standUpDetails->getName() << std::endl;
     int option = menu();
@@ -202,10 +203,9 @@ void standUp(Event* standUpDetails, details* array)
     } else if (option == 2){
         std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
         standUpDetails->cancel();
-        
     } else if (option == 3){
         std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
-
+        array->displaySeat();
     } else {
         main();
     }

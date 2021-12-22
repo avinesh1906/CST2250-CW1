@@ -24,7 +24,6 @@ std::string Event::getName(){
     return name;
 }
 
-
 Live::Live(details* array) : Event(array)
 {
 
@@ -142,6 +141,7 @@ int StandUp::cancel()
         } while ((*(availableSeat) + seatsToCancel) > maxCapacity);
     } else {
         std::cout << "There is no booking to cancel" << std::endl;
+        return 1;
     }
 
     for (int i = 1; i <= seatsToCancel; i++){
@@ -162,5 +162,14 @@ int StandUp::cancel()
     }
 
     *(availableSeat) += seatsToCancel;
-    return seatsToCancel;
+    return 0;
+}
+
+void StandUp::displaySeat(){
+    std::cout << name << " has the following booked seats: " << std::endl;
+    for (int i = 0; i < seatTrack->size() - 1; i++){
+        std::cout << seatTrack->at(i) << ", ";
+    }
+    std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
+    std::cout << "A total of " << *(availableSeat) << " available seats out of " << maxCapacity << " seats." << std::endl;
 }
