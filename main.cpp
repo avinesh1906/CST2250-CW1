@@ -201,7 +201,8 @@ void standUp(Event* standUpDetails, details* array)
 
     } else if (option == 2){
         std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-    
+        standUpDetails->cancel();
+        
     } else if (option == 3){
         std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
 

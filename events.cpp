@@ -87,10 +87,10 @@ int StandUp::booking()
     std::cout <<"Theatre maximum capacity: " <<  maxCapacity << std::endl;
     std::cout << "Number of seats already booked: " << *(availableSeat) << std::endl;
     std::cout << "Seats already booked: " << std::endl;
-    for (int i = 0; i < seatTrack->size(); i++){
+    for (int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
-    std::cout << std::endl;
+    std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
     if (maxCapacity > *(availableSeat)){
         std::cout << "You can proceed with booking " << std::endl;
         do {
@@ -122,5 +122,45 @@ int StandUp::booking()
 
 int StandUp::cancel()
 {
-    return 0;
+    int seatsToCancel = 0;
+    int seatNo;
+    std::cout << "Number of seats already booked: " << *(availableSeat) << std::endl;
+    std::cout << "Seats already booked: " << std::endl;
+    for (int i = 0; i < seatTrack->size() - 1; i++){
+        std::cout << seatTrack->at(i) << ", ";
+    }
+    std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
+    if (*(availableSeat) != maxCapacity){
+        std::cout << "You can proceed with cancellation" << std::endl;
+        do {
+            std::cout << "How many booking to cancel? " << std::endl;
+            std::cin >> seatsToCancel;
+            if ((*(availableSeat) + seatsToCancel) > maxCapacity){
+                std::cout << "Error. Cannot proceed with cancellation" << std::endl;
+            }
+
+        } while ((*(availableSeat) + seatsToCancel) > maxCapacity);
+    } else {
+        std::cout << "There is no booking to cancel" << std::endl;
+    }
+
+    for (int i = 1; i <= seatsToCancel; i++){
+        do {
+            std::cout << "Enter seat number to be cancelled: ";
+            std::cin >> seatNo;
+            if (!std::count(seatTrack->begin(), seatTrack->end(), seatNo)){
+                std::cout << "Seat No " << seatNo << " is not on the booking list." << std::endl;
+            }
+        } while(!std::count(seatTrack->begin(), seatTrack->end(), seatNo));
+        
+        for (int i = 0; i < seatTrack->size(); i++){
+            if (seatNo == seatTrack->at(i)){
+                seatTrack->erase(seatTrack->begin() + i);
+            }
+        
+        }   
+    }
+
+    *(availableSeat) += seatsToCancel;
+    return seatsToCancel;
 }
