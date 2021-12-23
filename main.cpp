@@ -6,7 +6,7 @@
 #include <vector>
 #include <fstream>
 
-int liveSize = 2;
+int liveSize = 3;
 int standUpSize = 2;
 int filmSize = 2;
 details* liveEvent = new details[liveSize];
@@ -16,9 +16,6 @@ details* filmEvent = new details[filmSize];
 int main()
 {
     // details liveDetails, standUpDetails, filmDetails;
-    int option;
-    int eventMenuChoice;
-    int eventChoice;
     // SHOULD USE dynamically allocated structure to read/save to a file (week7-lab5))
     
     // dynamically allocated array
@@ -29,39 +26,17 @@ int main()
     //     // pass array by reference
     //     enterDetails(&liveEvent[i], "live");
     // }
-    liveEvent[0].ref = 1;
-    liveEvent[0].name = "Komiko";
-    liveEvent[0].availableSeat = 294;
-    liveEvent[0].seatCapacity = 300;
 
-    liveEvent[1].ref = 1;
-    liveEvent[1].name = "Mr Bean";
-    liveEvent[1].availableSeat = 150;
-    liveEvent[1].seatCapacity = 300;
-
-    standUpEvent[0].ref = 2;
-    standUpEvent[0].name = "90 Favelas";
-    standUpEvent[0].availableSeat = 195;
-    standUpEvent[0].seatCapacity = 200;
-    standUpEvent[0].seatTrack = {1,50,150,25,15};
-
-    standUpEvent[1].ref = 2;
-    standUpEvent[1].name = "DSP Music";
-    standUpEvent[1].availableSeat = 197;
-    standUpEvent[1].seatCapacity = 200;
-    standUpEvent[1].seatTrack = {1,75,126};
-
-    filmEvent[0].ref = 3;
-    filmEvent[0].name = "Spiderman: Work From Home";
-    filmEvent[0].availableSeat = 25;
-    filmEvent[0].seatCapacity = 200;
-    filmEvent[0].filmType = "3D";
-
-    filmEvent[1].ref = 3;
-    filmEvent[1].name = "Avengers: Age of Covid";
-    filmEvent[1].availableSeat = 5;
-    filmEvent[1].seatCapacity = 200;
-    filmEvent[1].filmType = "2D";
+    try{
+        std::ifstream myFile("file.txt");
+        if(myFile.fail()){
+            throw 404;
+        }
+    } 
+    catch (...) {
+        addData();
+    }
+    
     loadFile();
     mainMenu();
 
@@ -268,15 +243,78 @@ void film(Event* filmDetails)
 }
 
 void loadFile(){
-    try{
-        std::ifstream myFile("file.txt");
-        if(myFile.fail()){
-            throw 404;
-        }
-    } 
-    catch (...) {
-        std::ofstream MyFile("file.txt");
+    std::ifstream myFile("file.txt");
+
+}
+
+void addData(){
+    std::ofstream MyFile("file.txt");
+
+    liveEvent[0].ref = 1;
+    liveEvent[0].name = "TomorrowIsland";
+    liveEvent[0].availableSeat = 294;
+    liveEvent[0].seatCapacity = 300;
+
+    liveEvent[1].ref = 1;
+    liveEvent[1].name = "Major Lazer";
+    liveEvent[1].availableSeat = 150;
+    liveEvent[1].seatCapacity = 300;
+
+    liveEvent[2].ref = 1;
+    liveEvent[2].name = "Artbat";
+    liveEvent[2].availableSeat = 50;
+    liveEvent[2].seatCapacity = 300;
+
+    standUpEvent[0].ref = 2;
+    standUpEvent[0].name = "Komiko";
+    standUpEvent[0].availableSeat = 195;
+    standUpEvent[0].seatCapacity = 200;
+    standUpEvent[0].seatTrack = {1,50,150,25,15};
+
+    standUpEvent[1].ref = 2;
+    standUpEvent[1].name = "Comedy Show";
+    standUpEvent[1].availableSeat = 197;
+    standUpEvent[1].seatCapacity = 200;
+    standUpEvent[1].seatTrack = {1,75,126};
+
+    filmEvent[0].ref = 3;
+    filmEvent[0].name = "Spiderman: Work From Home";
+    filmEvent[0].availableSeat = 75;
+    filmEvent[0].seatCapacity = 200;
+    filmEvent[0].filmType = "3D";
+
+    filmEvent[1].ref = 3;
+    filmEvent[1].name = "Avengers: Age of Covid";
+    filmEvent[1].availableSeat = 50;
+    filmEvent[1].seatCapacity = 200;
+    filmEvent[1].filmType = "2D";
+    
+    
+    for (int i = 0; i < liveSize; i++){
+        MyFile << "Ref: " << liveEvent[i].ref << "\n";
+        MyFile << "Name: " << liveEvent[i].name << "\n";
+        MyFile << "SeatCapacity: " << liveEvent[i].seatCapacity << "\n";
+        MyFile << "AvailableSeat: " << liveEvent[i].availableSeat << "\n";
+        MyFile << "\n";
     }
+
+    for (int i = 0; i < standUpSize; i++){
+        MyFile << "Ref: " << standUpEvent[i].ref << "\n";
+        MyFile << "Name: " << standUpEvent[i].name << "\n";
+        MyFile << "SeatCapacity: " << standUpEvent[i].seatCapacity << "\n";
+        MyFile << "AvailableSeat: " << standUpEvent[i].availableSeat << "\n";
+        MyFile << "\n";
+    }
+
+    for (int i = 0; i < filmSize; i++){
+        MyFile << "Ref: " << filmEvent[i].ref << "\n";
+        MyFile << "Name: " << filmEvent[i].name << "\n";
+        MyFile << "SeatCapacity: " << filmEvent[i].seatCapacity << "\n";
+        MyFile << "AvailableSeat: " << filmEvent[i].availableSeat << "\n";
+        MyFile << "FilmType: " << filmEvent[i].filmType << "\n";
+        MyFile << "\n";
+    }
+
 }
 
 void printName(details* array){

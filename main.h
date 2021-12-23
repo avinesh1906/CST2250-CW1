@@ -63,4 +63,6 @@ void loadFile();
  */
 void printName(details* array);
 
+void addData();
+
 #endif
