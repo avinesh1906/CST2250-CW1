@@ -31,15 +31,15 @@ int main()
     try{
         std::ifstream myFile(FILENAME);
         if(myFile.fail()){
-            throw 404;
+            throw 505;
+        } else{
+            loadFile();
         }
-        loadFile();
+        
     } 
     catch (...) {
         addData();
     }
-
-    
     mainMenu();
 
 
@@ -141,13 +141,13 @@ int mainMenu()
             mainMenu();
         } else {
             std::cout << "Bye Bye" << std::endl;
+            saveData();
             delete[] liveEvent;
             return 0;
         }
-
-            if (option <= 1 && option >= 5 ) {
-                std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
-            }
+        if (option <= 1 && option >= 5 ) {
+            std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
+        }
 
     } while (option <= 1 && option >= 5);
 
@@ -247,42 +247,68 @@ void loadFile(){
     std::string myText;
     int count = 0;
     int ref;
-    while (std::getline(myFile, myText)){
-        ref = std::stoi(myText.substr(myText.find("Ref: ") + 5));
-        if (myText.empty()){
-            count = 0;
-        }
-        if (ref == 1){
-            liveEvent[count].ref = ref;
-            liveEvent[count].name = (myText.substr(myText.find("Name: ") + 6));
-            liveEvent[count].availableSeat = std::stoi(myText.substr(myText.find("SeatCapacity: ") + 13));
-            liveEvent[count].seatCapacity = std::stoi(myText.substr(myText.find("AvailableSeat: ") + 15));
-            count += 1;
-            liveSize = count;
-        } else if (ref == 2){
-            standUpEvent[count].ref = ref;
-            standUpEvent[count].name = (myText.substr(myText.find("Name: ") + 6));
-            standUpEvent[count].availableSeat = std::stoi(myText.substr(myText.find("SeatCapacity: ") + 13));
-            standUpEvent[count].seatCapacity = std::stoi(myText.substr(myText.find("AvailableSeat: ") + 15));
-            int tmpTrack = std::stoi(myText.substr(myText.find("SeatTrack: ") + 11));
-            liveEvent[count].seatTrack.push_back(tmpTrack);
-            count += 1;
-            standUpSize = count;
-        } else {
-            filmEvent[count].ref = ref;
-            filmEvent[count].name = (myText.substr(myText.find("Name: ") + 6));
-            filmEvent[count].availableSeat = std::stoi(myText.substr(myText.find("SeatCapacity: ") + 13));
-            filmEvent[count].seatCapacity = std::stoi(myText.substr(myText.find("AvailableSeat: ") + 15));
-            filmEvent[count].filmType = (myText.substr(myText.find("FilmType: ") + 10));
-            count += 1;
-            filmSize = count;
+    int tmpRef = 1;
+   while (std::getline(myFile, myText)){
+
+        if (myText.find("Ref: ") != std::string::npos){
+            ref = std::stoi(myText.substr(myText.find("Ref: ") + 5));
         }
         
+        if(ref != tmpRef){
+            count = 0;
+            tmpRef = ref;
+        }
+        
+        if (ref == 1){
+            liveEvent[count].ref = ref;
+            if (myText.find("Name: ") != std::string::npos){
+                liveEvent[count].name = (myText.substr(myText.find("Name: ") + 6)); 
+            }
+            if (myText.find("SeatCapacity: ") != std::string::npos){
+                liveEvent[count].seatCapacity = std::stoi(myText.substr(myText.find("SeatCapacity: ") + 14));
+            }
+            if (myText.find("AvailableSeat: ") != std::string::npos){
+                liveEvent[count].availableSeat = std::stoi(myText.substr(myText.find("AvailableSeat: ") + 15));
+            }
+        } else if (ref == 2){
+            standUpEvent[count].ref = ref;
+            if (myText.find("Name: ") != std::string::npos){
+                standUpEvent[count].name = (myText.substr(myText.find("Name: ") + 6));
+            }
+            if (myText.find("SeatCapacity: ") != std::string::npos){
+                standUpEvent[count].seatCapacity = std::stoi(myText.substr(myText.find("SeatCapacity: ") + 14));
+            }
+            if (myText.find("AvailableSeat: ") != std::string::npos){
+                standUpEvent[count].availableSeat = std::stoi(myText.substr(myText.find("AvailableSeat: ") + 15));
+            }
+            if (myText.find("SeatTrack: ") != std::string::npos){
+                int tmpTrack = std::stoi(myText.substr(myText.find("SeatTrack: ") + 11));
+                liveEvent[count].seatTrack.push_back(tmpTrack);
+            }
+        } else if (ref == 3){
+            filmEvent[count].ref = ref;
+            if (myText.find("Name: ") != std::string::npos){
+                filmEvent[count].name = (myText.substr(myText.find("Name: ") + 6));
+            }
+            if (myText.find("AvailableSeat: ") != std::string::npos){
+                filmEvent[count].availableSeat = std::stoi(myText.substr(myText.find("AvailableSeat: ") + 15));
+            }
+            if (myText.find("SeatCapacity: ") != std::string::npos){
+                filmEvent[count].seatCapacity = std::stoi(myText.substr(myText.find("SeatCapacity: ") + 14));
+            }
+            if (myText.find("FilmType: ") != std::string::npos){
+                filmEvent[count].filmType = (myText.substr(myText.find("FilmType: ") + 10));
+            }
+        } 
+        if (myText.empty()){
+            count += 1;
+        }
     }
-    mainMenu();
+    myFile.close();
 }
 
 void addData(){
+    std::cout << "Adding" << std::endl;
     std::ofstream MyFile(FILENAME);
 
     liveEvent[0].ref = 1;
@@ -352,9 +378,43 @@ void addData(){
         MyFile << "FilmType: " << filmEvent[i].filmType << "\n";
         MyFile << "\n";
     }
-
+    MyFile.close();
 }
 
 void printName(details* array){
     std::cout << array->name << std::endl;
+}
+
+void saveData()
+{
+    std::ofstream MyFile(FILENAME, std::ofstream::trunc);
+    for (int i = 0; i < liveSize; i++){
+        MyFile << "Ref: " << liveEvent[i].ref << "\n";
+        MyFile << "Name: " << liveEvent[i].name << "\n";
+        MyFile << "SeatCapacity: " << liveEvent[i].seatCapacity << "\n";
+        MyFile << "AvailableSeat: " << liveEvent[i].availableSeat << "\n";
+        MyFile << "\n";
+    }
+
+    for (int i = 0; i < standUpSize; i++){
+        MyFile << "Ref: " << standUpEvent[i].ref << "\n";
+        MyFile << "Name: " << standUpEvent[i].name << "\n";
+        MyFile << "SeatCapacity: " << standUpEvent[i].seatCapacity << "\n";
+        MyFile << "AvailableSeat: " << standUpEvent[i].availableSeat << "\n";
+        for (int j = 0; j < standUpEvent[i].seatTrack.size(); j++){
+            MyFile << "SeatTrack: " << standUpEvent[i].seatTrack[j] << "\n";
+        }
+        MyFile << "\n";
+    }
+
+    for (int i = 0; i < filmSize; i++){
+        MyFile << "Ref: " << filmEvent[i].ref << "\n";
+        MyFile << "Name: " << filmEvent[i].name << "\n";
+        MyFile << "SeatCapacity: " << filmEvent[i].seatCapacity << "\n";
+        MyFile << "AvailableSeat: " << filmEvent[i].availableSeat << "\n";
+        MyFile << "FilmType: " << filmEvent[i].filmType << "\n";
+        MyFile << "\n";
+    }
+
+    MyFile.close();
 }
