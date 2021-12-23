@@ -16,22 +16,10 @@ details* filmEvent = new details[filmSize];
 
 int main()
 {
-    // details liveDetails, standUpDetails, filmDetails;
-    // SHOULD USE dynamically allocated structure to read/save to a file (week7-lab5))
-    
-    // dynamically allocated array
-    
-    
-
-    // for (int i = 0; i < liveSize; i++){
-    //     // pass array by reference
-    //     enterDetails(&liveEvent[i], "live");
-    // }
-
     try{
         std::ifstream myFile(FILENAME);
         if(myFile.fail()){
-            throw 505;
+            throw 404;
         } else{
             loadFile();
         }
