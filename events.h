@@ -62,6 +62,7 @@ class Film : public Event {
         void description();
         int booking();
         int cancel();
+        std::string getType();
         // std::string displayFilm();
 };
 

@@ -240,7 +240,12 @@ int Film::cancel()
 void Film::description()
 {
     std::cout << "Film " << getName() << " of film type " 
-    << type << " has " << *(availableSeat) << " available seats out of " 
+    << getType() << " has " << *(availableSeat) << " available seats out of " 
     << getMaxCapacity() << " seats." << std::endl;
 
+}
+
+std::string Film::getType()
+{
+    return type;
 }
