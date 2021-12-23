@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <fstream>
 
 int liveSize = 2;
 int standUpSize = 2;
@@ -62,6 +62,7 @@ int main()
     filmEvent[1].availableSeat = 5;
     filmEvent[1].seatCapacity = 200;
     filmEvent[1].filmType = "2D";
+    loadFile();
     mainMenu();
 
 
@@ -266,12 +267,15 @@ void film(Event* filmDetails)
     mainMenu();
 }
 
-void enterDetails(details* array, std::string eventType){
-    if (eventType == "live"){
-        array->ref = 1;
-        array->name = "Komiko";
-        array->availableSeat = 294;
-        array->seatCapacity = 300;
+void loadFile(){
+    try{
+        std::ifstream myFile("file.txt");
+        if(myFile.fail()){
+            throw 404;
+        }
+    } 
+    catch (...) {
+        std::ofstream MyFile("file.txt");
     }
 }
 

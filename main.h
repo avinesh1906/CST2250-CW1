@@ -55,8 +55,7 @@ void all(details liveDetails, details standUpDetails, details filmDetails);
     @param array stores the details of type struct and eventType is either live, standUp or film
     @return no return
  */
-void enterDetails(details* array, std::string eventType);
-
+void loadFile();
 /*
     To print the list of name of a particular event
     @param array stores the details of type struc
