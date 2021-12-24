@@ -98,7 +98,7 @@ int StandUp::booking()
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
     std::cout << "Number of seats available for booking: " <<  *(availableSeat) << std::endl;
     std::cout << "Seats already booked: " << std::endl;
-    for (int i = 0; i < seatTrack->size() - 1; i++){
+    for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
     std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
@@ -137,7 +137,7 @@ int StandUp::cancel()
     int seatNo;
     std::cout << "Number of seats already booked: " << getMaxCapacity() - *(availableSeat) << std::endl;
     std::cout << "Seats already booked: " << std::endl;
-    for (int i = 0; i < seatTrack->size() - 1; i++){
+    for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
     std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
@@ -165,7 +165,7 @@ int StandUp::cancel()
             }
         } while(!std::count(seatTrack->begin(), seatTrack->end(), seatNo));
         
-        for (int i = 0; i < seatTrack->size(); i++){
+        for (long unsigned int i = 0; i < seatTrack->size(); i++){
             if (seatNo == seatTrack->at(i)){
                 seatTrack->erase(seatTrack->begin() + i);
             }
@@ -179,7 +179,7 @@ int StandUp::cancel()
 
 void StandUp::description(){
     std::cout << getName() << " has the following booked seats: " << std::endl;
-    for (int i = 0; i < seatTrack->size() - 1; i++){
+    for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
     std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;

@@ -43,7 +43,6 @@ int main()
 int mainMenu()
 {
     int option;
-    int eventMenuChoice;
     int eventChoice;
     std::vector <Event*> events;
 
@@ -154,7 +153,9 @@ int mainMenu()
             delete[] standUpEvent;
             delete[] filmEvent;
 
-            liveEvent, standUpEvent, filmEvent = NULL;
+            liveEvent = NULL;
+            standUpEvent = NULL;
+            filmEvent = NULL;
 
             return 0;
         }
@@ -205,7 +206,7 @@ void live(Event* liveDetails)
         std::cout << std::endl << "List details and availability for Live Event" << std::endl;
         liveDetails->description();
     } else {
-        main();
+        mainMenu();
     }
 
     mainMenu();
@@ -215,7 +216,6 @@ void standUp(Event* standUpDetails)
 {
     std::cout << "You choose: " << standUpDetails->getName() << std::endl;
     int option = menu();
-    int noOfBooking;
     if (option == 1) {
         std::cout << std::endl << "Booking for Standing Event" << std::endl;
         standUpDetails->booking();
@@ -227,7 +227,7 @@ void standUp(Event* standUpDetails)
         std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
         standUpDetails->description();
     } else {
-        main();
+        mainMenu();
     }
     mainMenu();
 }
@@ -249,14 +249,13 @@ void film(Event* filmDetails)
         std::cout << std::endl << "List details and availability for film Event" << std::endl;
         filmDetails->description();
     } else {
-        main();
+        mainMenu();
     }
 
     mainMenu();
 }
 
 void loadFile(){
-    std::cout << liveSize << " " << standUpSize << " " << filmSize << std::endl;
     std::ifstream myFile(FILENAME);
     std::string myText;
     int count = 0;
@@ -378,7 +377,7 @@ void addData(){
         MyFile << "Name: " << standUpEvent[i].name << "\n";
         MyFile << "SeatCapacity: " << standUpEvent[i].seatCapacity << "\n";
         MyFile << "AvailableSeat: " << standUpEvent[i].availableSeat << "\n";
-        for (int j = 0; j < standUpEvent[i].seatTrack.size(); j++){
+        for (long unsigned int j = 0; j < standUpEvent[i].seatTrack.size(); j++){
             MyFile << "SeatTrack: " << standUpEvent[i].seatTrack[j] << "\n";
         }
         MyFile << "\n";
@@ -415,7 +414,7 @@ void saveData()
         MyFile << "Name: " << standUpEvent[i].name << "\n";
         MyFile << "SeatCapacity: " << standUpEvent[i].seatCapacity << "\n";
         MyFile << "AvailableSeat: " << standUpEvent[i].availableSeat << "\n";
-        for (int j = 0; j < standUpEvent[i].seatTrack.size(); j++){
+        for (long unsigned int j = 0; j < standUpEvent[i].seatTrack.size(); j++){
             MyFile << "SeatTrack: " << standUpEvent[i].seatTrack[j] << "\n";
         }
         MyFile << "\n";
