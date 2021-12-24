@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <bits/stdc++.h>
 
 const std::string FILENAME = "file.txt";
 int liveSize = 3;
@@ -49,6 +50,11 @@ int mainMenu()
     for (int i = 0; i < filmSize; i++){
         events.push_back(new Film(&filmEvent[i]));
     }
+
+    for (int i = 0; i < standUpSize; i++){
+        sort(standUpEvent[i].seatTrack.begin(),standUpEvent[i].seatTrack.end());
+    }
+
     do {
         std::cout << std::endl << "******** Main Menu ********" << std::endl;
         std::cout << "1: Live event" << std::endl;
@@ -271,7 +277,7 @@ void loadFile(){
             }
             if (myText.find("SeatTrack: ") != std::string::npos){
                 int tmpTrack = std::stoi(myText.substr(myText.find("SeatTrack: ") + 11));
-                liveEvent[count].seatTrack.push_back(tmpTrack);
+                standUpEvent[count].seatTrack.push_back(tmpTrack);
             }
         } else if (ref == 3){
             filmEvent[count].ref = ref;
@@ -318,7 +324,7 @@ void addData(){
     standUpEvent[0].name = "Komiko";
     standUpEvent[0].availableSeat = 195;
     standUpEvent[0].seatCapacity = 200;
-    standUpEvent[0].seatTrack = {1,50,150,25,15};
+    standUpEvent[0].seatTrack = {1,15,25,50,150};
 
     standUpEvent[1].ref = 2;
     standUpEvent[1].name = "Comedy Show";
