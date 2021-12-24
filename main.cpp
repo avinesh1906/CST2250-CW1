@@ -8,15 +8,21 @@
 #include <bits/stdc++.h>
 
 const std::string FILENAME = "file.txt";
-int liveSize = 3;
-int standUpSize = 2;
-int filmSize = 2;
-details* liveEvent = new details[liveSize];
-details* standUpEvent = new details[standUpSize];
-details* filmEvent = new details[filmSize];
+
+int liveSize;
+int standUpSize;
+int filmSize;
+details* liveEvent;
+details* standUpEvent;
+details* filmEvent;
 
 int main()
 {
+    determineSize();
+    liveEvent = new details[liveSize];
+    standUpEvent = new details[standUpSize];
+    filmEvent = new details[filmSize];
+
     try{
         std::ifstream myFile(FILENAME);
         if(myFile.fail()){
@@ -237,6 +243,7 @@ void film(Event* filmDetails)
 }
 
 void loadFile(){
+    std::cout << liveSize << " " << standUpSize << " " << filmSize << std::endl;
     std::ifstream myFile(FILENAME);
     std::string myText;
     int count = 0;
@@ -411,4 +418,28 @@ void saveData()
     }
 
     MyFile.close();
+}
+
+void determineSize()
+{
+    liveSize = 0;
+    standUpSize = 0;
+    filmSize = 0;
+    std::ifstream myFile(FILENAME);
+    int ref;
+    std::string myText;
+   while (std::getline(myFile, myText)){
+        if (myText.find("Ref: ") != std::string::npos){
+            ref = std::stoi(myText.substr(myText.find("Ref: ") + 5));
+            if (ref == 1){
+                liveSize += 1;
+            } else if (ref == 2){
+                standUpSize += 1;    
+            } else if (ref == 3){
+                filmSize += 1;
+            } 
+        }
+    }
+    
+    myFile.close();
 }

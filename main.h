@@ -66,4 +66,6 @@ void printName(details* array);
 void addData();
 
 void saveData();
+
+void determineSize();
 #endif
