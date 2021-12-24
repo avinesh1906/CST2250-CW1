@@ -141,8 +141,21 @@ int mainMenu()
             mainMenu();
         } else {
             std::cout << "Bye Bye" << std::endl;
+            
             saveData();
+
+            for (Event* e: events){
+                delete e;
+            }
+
+            events.clear();
+
             delete[] liveEvent;
+            delete[] standUpEvent;
+            delete[] filmEvent;
+
+            liveEvent, standUpEvent, filmEvent = NULL;
+
             return 0;
         }
         if (option <= 1 && option >= 5 ) {

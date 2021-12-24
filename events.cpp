@@ -14,7 +14,7 @@ Event::Event(details* array)
 
 Event::~Event()
 {
-
+    delete availableSeat;
 }
 
 void Live::description(){
