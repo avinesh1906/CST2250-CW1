@@ -24,38 +24,32 @@ int menu();
 
 /* 
     To add a booking or cancel booking and list details and availability for live event.
-    @param liveDetails stores the details for live event
+    @param liveDetails stores the details of the chosen live event
     @return void 
  */
 void live(Event* liveDetails);
 
 /* 
     To add a booking or cancel booking and list details and availability for stand up event.
-    @param no parameters
+    @param standUpDetails stores the details of the chosen stand-up event
     @return void 
  */
 void standUp(Event* standUpDetails);
 
 /* 
     To add a booking or cancel booking and list details and availability for film event.
-    @param no parameters
+    @param filmDetails stores the details of the chosen film event
     @return void 
  */
 void film(Event* filmDetails);
 
-/* 
-    To list all events
-    @param liveDetails, standUpDetails, filmDetails stores the current data for each events
-    @return void
- */
-void all(details liveDetails, details standUpDetails, details filmDetails);
-
 /*
-    To enter the details of a particular event into an array
-    @param array stores the details of type struct and eventType is either live, standUp or film
+    To load the file if already exist into a vector 
+    @param no parameter
     @return no return
  */
 void loadFile();
+
 /*
     To print the list of name of a particular event
     @param array stores the details of type struc
@@ -63,9 +57,24 @@ void loadFile();
  */
 void printName(details* array);
 
+/* 
+    To add data to the file if doesn't exist
+    @param no parameter
+    @return no return
+ */
 void addData();
 
+/* 
+    To save datat to the file when quit
+    @param no parameter
+    @return no return
+ */
 void saveData();
 
+/* 
+    To determine the size of the vector size 
+    @param no parameter
+    @return no return
+ */
 void determineSize();
 #endif
