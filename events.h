@@ -5,6 +5,7 @@
 #include <vector>
 #include "struct.h"
 
+// Base class
 class Event {
     private:
         int ref;
@@ -12,7 +13,6 @@ class Event {
         int maxCapacity;
     protected:
         int* availableSeat;
-    
     public:
         //explicit constructor
         Event(details* array);
@@ -32,6 +32,7 @@ class Event {
         
 };
 
+// Live class - Derived from event
 class Live : public Event {
     public:
         Live(details* array);
@@ -40,6 +41,7 @@ class Live : public Event {
         int cancel();
 };
 
+// StandUp class - Derived from event
 class StandUp : public Event {
     private:
         std::vector <int> *seatTrack;
@@ -49,10 +51,9 @@ class StandUp : public Event {
         void description();
         int booking();
         int cancel();
-        // void displaySeat();
-        // void allocateSeat(int noOfBooking);
 };
 
+// Film class - Derived from event
 class Film : public Event {
     private:
         std::string type;
@@ -63,7 +64,6 @@ class Film : public Event {
         int booking();
         int cancel();
         std::string getType();
-        // std::string displayFilm();
 };
 
 #endif
