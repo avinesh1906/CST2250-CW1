@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+// User defined datatype
 struct details
 {
     int ref;
