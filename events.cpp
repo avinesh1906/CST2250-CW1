@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <vector>
 
+// constructor for Event class
 Event::Event(details* array)
 {
     this->ref = array->ref;
@@ -12,40 +13,50 @@ Event::Event(details* array)
     this->maxCapacity = array->seatCapacity;
 }
 
+// Deconstructor for Event class
 Event::~Event()
 {
+    // clear the heap storage
     delete availableSeat;
+    availableSeat = NULL;
 }
 
-void Live::description(){
-
-    std::cout <<  getName() + " has " +  std::to_string(*(availableSeat)) +  " available seats" << std::endl;
-    
-}
-
+// get the name of the event
 std::string Event::getName(){
     return name;
 }
 
+// get the reference of the event
 int Event::getRef()
 {
     return ref;
 }
 
+// get the maximum capacity of the event
 int Event::getMaxCapacity(){
     return maxCapacity;
 }
 
+// Live class constructor
 Live::Live(details* array) : Event(array)
 {
 
 }
 
+// Description for live events
+void Live::description(){
+
+    std::cout <<  getName() + " has " +  std::to_string(*(availableSeat)) +  " available seats out of " + std::to_string(getMaxCapacity()) + " seats." << std::endl;
+    
+}
+
+// Booking for live event
 int Live::booking()
 {
     int seatToBeBooked = 0;
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
     std::cout << "Number of seats available for booking: " << *(availableSeat) << std::endl;
+    // check if available seat is less than maximum seating capacity
     if (getMaxCapacity() > *(availableSeat)){
         std::cout << "You can proceed with booking " << std::endl;
         do {
@@ -59,10 +70,12 @@ int Live::booking()
     } else {
         std::cout << "No more seats available " << std::endl;
     }
+    // deduct the seat booked from available seat
     *(availableSeat) -= seatToBeBooked;
     return seatToBeBooked;
 }
 
+// cancel the live event
 int Live::cancel()
 {
     int seatsToCancel = 0;
@@ -80,16 +93,18 @@ int Live::cancel()
     } else {
         std::cout << "There is no booking to cancel" << std::endl;
     }
-
+    // increase available seat
     *(availableSeat) += seatsToCancel;
     return seatsToCancel;
 }
 
+// StandUp event constructor
 StandUp::StandUp(details* array) : Event(array)
 {
     seatTrack = &(array->seatTrack);
 }
 
+// book stand Up event
 int StandUp::booking()
 {
 
@@ -98,6 +113,7 @@ int StandUp::booking()
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
     std::cout << "Number of seats available for booking: " <<  *(availableSeat) << std::endl;
     std::cout << "Seats already booked: " << std::endl;
+    // display the seat track 
     for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
@@ -116,6 +132,7 @@ int StandUp::booking()
         std::cout << "No more seats available " << std::endl;
     }
     
+    // choose seat number to book
     for (int i = 1; i <= seatToBeBooked; i++){
         do {
             std::cout << "Enter seat number to be booked: ";
@@ -127,10 +144,12 @@ int StandUp::booking()
         seatTrack->push_back(seatNo);
     }
 
+    // decrease available seat
     *(availableSeat) -= seatToBeBooked;
     return seatToBeBooked;
 }
 
+// cancel booking for standup event
 int StandUp::cancel()
 {
     int seatsToCancel = 0;
@@ -156,6 +175,7 @@ int StandUp::cancel()
         return 1;
     }
 
+    // choose seat number to cancel
     for (int i = 1; i <= seatsToCancel; i++){
         do {
             std::cout << "Enter seat number to be cancelled: ";
@@ -165,6 +185,7 @@ int StandUp::cancel()
             }
         } while(!std::count(seatTrack->begin(), seatTrack->end(), seatNo));
         
+        // delete the seat from the vector
         for (long unsigned int i = 0; i < seatTrack->size(); i++){
             if (seatNo == seatTrack->at(i)){
                 seatTrack->erase(seatTrack->begin() + i);
@@ -177,8 +198,10 @@ int StandUp::cancel()
     return 0;
 }
 
+// get description of the standUp event
 void StandUp::description(){
     std::cout << getName() << " has the following booked seats: " << std::endl;
+    // print the seat track
     for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
@@ -193,6 +216,7 @@ Film::Film(details* array) : Event(array)
     this->type = array->filmType;
 }
 
+// booking for film event
 int Film::booking()
 {
     int seatToBeBooked = 0;
@@ -215,6 +239,7 @@ int Film::booking()
     return seatToBeBooked;
 }
 
+// cancel booking for film event
 int Film::cancel()
 {
     int seatsToCancel = 0;
@@ -237,6 +262,7 @@ int Film::cancel()
     return seatsToCancel;
 }
 
+// desciption for film event
 void Film::description()
 {
     std::cout << "Film " << getName() << " of film type " 
@@ -245,6 +271,7 @@ void Film::description()
 
 }
 
+// return film type
 std::string Film::getType()
 {
     return type;
