@@ -27,8 +27,8 @@ class Event {
         int getMaxCapacity();
 
         //base class
-        virtual int booking() = 0;
-        virtual int cancel() = 0;
+        virtual void booking() = 0;
+        virtual void cancel() = 0;
         
 };
 
@@ -37,8 +37,8 @@ class Live : public Event {
     public:
         Live(details* array);
         void description();
-        int booking();
-        int cancel();
+        void booking();
+        void cancel();
 };
 
 // StandUp class - Derived from event
@@ -49,8 +49,8 @@ class StandUp : public Event {
     public:
         StandUp(details* array);
         void description();
-        int booking();
-        int cancel();
+        void booking();
+        void cancel();
 };
 
 // Film class - Derived from event
@@ -61,8 +61,8 @@ class Film : public Event {
     public:
         Film(details* array);
         void description();
-        int booking();
-        int cancel();
+        void booking();
+        void cancel();
         std::string getType();
 };
 

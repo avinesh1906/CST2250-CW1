@@ -51,7 +51,7 @@ void Live::description(){
 }
 
 // Booking for live event
-int Live::booking()
+void Live::booking()
 {
     int seatToBeBooked = 0;
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
@@ -72,11 +72,11 @@ int Live::booking()
     }
     // deduct the seat booked from available seat
     *(availableSeat) -= seatToBeBooked;
-    return seatToBeBooked;
+
 }
 
 // cancel the live event
-int Live::cancel()
+void Live::cancel()
 {
     int seatsToCancel = 0;
     std::cout << "Number of seats already booked: " << (getMaxCapacity() - *(availableSeat)) << std::endl;
@@ -95,7 +95,7 @@ int Live::cancel()
     }
     // increase available seat
     *(availableSeat) += seatsToCancel;
-    return seatsToCancel;
+
 }
 
 // StandUp event constructor
@@ -105,7 +105,7 @@ StandUp::StandUp(details* array) : Event(array)
 }
 
 // book stand Up event
-int StandUp::booking()
+void StandUp::booking()
 {
 
     int seatToBeBooked = 0;
@@ -146,11 +146,11 @@ int StandUp::booking()
 
     // decrease available seat
     *(availableSeat) -= seatToBeBooked;
-    return seatToBeBooked;
+
 }
 
 // cancel booking for standup event
-int StandUp::cancel()
+void StandUp::cancel()
 {
     int seatsToCancel = 0;
     int seatNo;
@@ -172,7 +172,6 @@ int StandUp::cancel()
         } while ((*(availableSeat) + seatsToCancel) > getMaxCapacity());
     } else {
         std::cout << "There is no booking to cancel" << std::endl;
-        return 1;
     }
 
     // choose seat number to cancel
@@ -195,7 +194,7 @@ int StandUp::cancel()
     }
 
     *(availableSeat) += seatsToCancel;
-    return 0;
+
 }
 
 // get description of the standUp event
@@ -217,7 +216,7 @@ Film::Film(details* array) : Event(array)
 }
 
 // booking for film event
-int Film::booking()
+void Film::booking()
 {
     int seatToBeBooked = 0;
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
@@ -236,11 +235,11 @@ int Film::booking()
         std::cout << "No more seats available " << std::endl;
     }
     *(availableSeat) -= seatToBeBooked;
-    return seatToBeBooked;
+
 }
 
 // cancel booking for film event
-int Film::cancel()
+void Film::cancel()
 {
     int seatsToCancel = 0;
     std::cout << "Number of seats already booked: " << getMaxCapacity() - *(availableSeat) << std::endl;
@@ -259,7 +258,7 @@ int Film::cancel()
     }
 
     *(availableSeat) += seatsToCancel;
-    return seatsToCancel;
+
 }
 
 // desciption for film event
