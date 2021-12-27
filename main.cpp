@@ -7,6 +7,7 @@
 #include <fstream>
 #include <bits/stdc++.h>
 
+// filename
 const std::string FILENAME = "file.txt";
 
 int liveSize;
@@ -19,26 +20,33 @@ details* filmEvent;
 int main()
 {
     determineSize();
+
+    // create dynamically allocated vectors of user defined datatype 
     liveEvent = new details[liveSize];
     standUpEvent = new details[standUpSize];
     filmEvent = new details[filmSize];
 
+    // check if the file exists
     try{
         std::ifstream myFile(FILENAME);
+
         if(myFile.fail()){
+            // throw an exception when the file does not exist
             throw 404;
         } else{
+            // if exists, call function loadFile()
             loadFile();
         }
         
     } 
+    // Call function addData if an error occurs in the try block
     catch (...) {
         addData();
     }
+
     mainMenu();
-
-
 }
+
 
 int mainMenu()
 {
@@ -46,6 +54,7 @@ int mainMenu()
     int eventChoice;
     std::vector <Event*> events;
 
+    // Append the details of each event vector to a main vector
     for (int i = 0; i < liveSize; i++){
         events.push_back(new Live(&liveEvent[i]));
     }
@@ -56,10 +65,12 @@ int mainMenu()
         events.push_back(new Film(&filmEvent[i]));
     }
 
+    // sort the seat track by ascending order
     for (int i = 0; i < standUpSize; i++){
         sort(standUpEvent[i].seatTrack.begin(),standUpEvent[i].seatTrack.end());
     }
 
+    // keep looping until 5 entered
     do {
         std::cout << std::endl << "******** Main Menu ********" << std::endl;
         std::cout << "1: Live event" << std::endl;
@@ -70,14 +81,18 @@ int mainMenu()
         std::cout << std::endl << "Enter your choice: " ;
         std::cin >> option;
 
+        // Live event
         if (option == 1) {    
             std::cout << std::endl << "******** Live Event ********" << std::endl;      
+            
+            // print the shows of live event
             for (int i = 0; i < liveSize; i++){
                 std::cout << (i+1) << ": ";
                 printName(&liveEvent[i]);
             }
+            
+            // prompt the user to enter an event
             std::cout << "Choose your event: ";
-
             do {
                 std::cin >> eventChoice;
 
@@ -86,16 +101,28 @@ int mainMenu()
                 }
             } while (eventChoice < 1 && eventChoice > liveSize);
 
+            // dynamically allocated variable of type Event
             Event* liveClass = new Live(&liveEvent[eventChoice - 1]);
             live(liveClass);
+
+            // clear the memory
+            delete liveClass;
+            liveClass = NULL;
+
+            mainMenu();
+
+        // Stand Up event
         } else if (option == 2) {
             std::cout << std::endl << "******** StandUp Event ********" << std::endl;      
+            
+            // choose show out of standup event list
             for (int i = 0; i < standUpSize; i++){
                 std::cout << (i+1) << ": ";
                 printName(&standUpEvent[i]);
             }
-            std::cout << "Choose your event: ";
 
+            // prompt user for input
+            std::cout << "Choose your event: ";
             do {
                 std::cin >> eventChoice;
 
@@ -106,14 +133,22 @@ int mainMenu()
 
             Event* standUP = new StandUp(&standUpEvent[eventChoice - 1]);
             standUp(standUP);
+
+            delete standUP;
+            standUP = NULL;
+
+            mainMenu();
+
+        // Film Event
         } else if (option == 3) {
             std::cout << std::endl << "******** Film Event ********" << std::endl;      
+            
             for (int i = 0; i < filmSize; i++){
                 std::cout << (i+1) << ": ";
                 printName(&filmEvent[i]);
             }
+            
             std::cout << "Choose your event: ";
-
             do {
                 std::cin >> eventChoice;
 
@@ -123,12 +158,21 @@ int mainMenu()
             } while (eventChoice < 1 && eventChoice > filmSize);
 
             Event* filmFunction = new Film(&filmEvent[eventChoice - 1]);
-            // call function live
             film(filmFunction); 
+
+            delete filmFunction;
+            filmFunction = NULL;
+
+            mainMenu();
+
+        // List details for all events
         } else if (option == 4) {
             std::cout << std::endl << "List details for all events" << std::endl;
             int ref = 1;
+
+            // loop through dynamically allocated vector array
             for(unsigned i = 0; i < events.size(); i++){
+                // display the details
                 if (ref == events[i]->getRef()){
                     events[i]->description() ;
                 } else {
@@ -137,18 +181,22 @@ int mainMenu()
                     ref = events[i]->getRef();
                 }   
             }
+
             mainMenu();
+        
+        // Exit
         } else {
             std::cout << "Bye Bye" << std::endl;
             
+            // save data to the file
             saveData();
-
+            
+            // clear the heap
             for (Event* e: events){
                 delete e;
             }
-
             events.clear();
-
+            
             delete[] liveEvent;
             delete[] standUpEvent;
             delete[] filmEvent;
@@ -168,9 +216,10 @@ int mainMenu()
     return option;    
 }   
 
-
+// function menu
 int menu(){
     int option;
+    // prompt user to make a choice
     do {
         std::cout << std::endl << "******** Menu ********" << std::endl;
         std::cout << "1: Booking" << std::endl;
@@ -189,6 +238,7 @@ int menu(){
     return option;    
 }
 
+// Live event choice
 void live(Event* liveDetails)
 {   
     std::cout << "You choose: " << liveDetails->getName() << std::endl;
@@ -209,9 +259,9 @@ void live(Event* liveDetails)
         mainMenu();
     }
 
-    mainMenu();
 }
 
+// Stand Up event choice
 void standUp(Event* standUpDetails)
 {
     std::cout << "You choose: " << standUpDetails->getName() << std::endl;
@@ -229,9 +279,10 @@ void standUp(Event* standUpDetails)
     } else {
         mainMenu();
     }
-    mainMenu();
+
 }
 
+// Film event choice
 void film(Event* filmDetails)
 {
     std::cout << "You choose: " << filmDetails->getName() << std::endl;
@@ -251,27 +302,34 @@ void film(Event* filmDetails)
     } else {
         mainMenu();
     }
-
-    mainMenu();
 }
 
+// load file 
 void loadFile(){
     std::ifstream myFile(FILENAME);
     std::string myText;
     int count = 0;
     int ref;
     int tmpRef = 1;
-   while (std::getline(myFile, myText)){
 
+    // loop until last line
+    while (std::getline(myFile, myText)){
+
+        // check if myText matches the substring
         if (myText.find("Ref: ") != std::string::npos){
+            // append the string after the substring to the variable ref
             ref = std::stoi(myText.substr(myText.find("Ref: ") + 5));
         }
         
+        // check if ref is not same as tmpRef
         if(ref != tmpRef){
+            // append zero to count
             count = 0;
+            // append new ref to tmpRef
             tmpRef = ref;
         }
         
+        // Event reference 
         if (ref == 1){
             liveEvent[count].ref = ref;
             if (myText.find("Name: ") != std::string::npos){
@@ -283,6 +341,7 @@ void loadFile(){
             if (myText.find("AvailableSeat: ") != std::string::npos){
                 liveEvent[count].availableSeat = std::stoi(myText.substr(myText.find("AvailableSeat: ") + 15));
             }
+        // StandUp Reference
         } else if (ref == 2){
             standUpEvent[count].ref = ref;
             if (myText.find("Name: ") != std::string::npos){
@@ -298,6 +357,7 @@ void loadFile(){
                 int tmpTrack = std::stoi(myText.substr(myText.find("SeatTrack: ") + 11));
                 standUpEvent[count].seatTrack.push_back(tmpTrack);
             }
+        // Film reference
         } else if (ref == 3){
             filmEvent[count].ref = ref;
             if (myText.find("Name: ") != std::string::npos){
@@ -313,15 +373,19 @@ void loadFile(){
                 filmEvent[count].filmType = (myText.substr(myText.find("FilmType: ") + 10));
             }
         } 
+        // check if myText is empty
         if (myText.empty()){
+            // increment count
             count += 1;
         }
     }
+
+    // close the file
     myFile.close();
 }
 
+// add data to the file if not found
 void addData(){
-    std::cout << "Adding" << std::endl;
     std::ofstream MyFile(FILENAME);
 
     liveEvent[0].ref = 1;
@@ -394,10 +458,12 @@ void addData(){
     MyFile.close();
 }
 
+// print the event name
 void printName(details* array){
     std::cout << array->name << std::endl;
 }
 
+// save data to the file
 void saveData()
 {
     std::ofstream MyFile(FILENAME, std::ofstream::trunc);
@@ -432,6 +498,7 @@ void saveData()
     MyFile.close();
 }
 
+// determine the vector size for liveEvent, standUpEvent and filmEvent 
 void determineSize()
 {
     liveSize = 0;

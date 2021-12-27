@@ -3,7 +3,4 @@
 #include "main.h"
 #include "events.h"
 
-TEST_CASE("test live booking"){
-    Live testLiveBooking;
-    
-}
+SCENARIO("")
