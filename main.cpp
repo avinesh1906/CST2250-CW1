@@ -202,7 +202,7 @@ int mainMenu()
             standUpEvent = NULL;
             filmEvent = NULL;
 
-            return 0;
+            exit(0);
         } else if (option != 5) {
             std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
         }
