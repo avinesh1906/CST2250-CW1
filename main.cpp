@@ -19,12 +19,6 @@ details* filmEvent;
 
 int main()
 {
-    determineSize();
-
-    // create dynamically allocated vectors of user defined datatype 
-    liveEvent = new details[liveSize];
-    standUpEvent = new details[standUpSize];
-    filmEvent = new details[filmSize];
 
     // check if the file exists
     try{
@@ -34,6 +28,11 @@ int main()
             // throw an exception when the file does not exist
             throw 404;
         } else{
+            determineSize();
+            // create dynamically allocated vectors of user defined datatype 
+            liveEvent = new details[liveSize];
+            standUpEvent = new details[standUpSize];
+            filmEvent = new details[filmSize];
             // if exists, call function loadFile()
             loadFile();
         }
@@ -403,6 +402,15 @@ void loadFile(){
 void addData(){
     std::ofstream MyFile(FILENAME);
 
+    liveSize = 3;
+    standUpSize = 2;
+    filmSize = 2;
+
+    // create dynamically allocated vectors of user defined datatype 
+    liveEvent = new details[liveSize];
+    standUpEvent = new details[standUpSize];
+    filmEvent = new details[filmSize];
+
     liveEvent[0].ref = 1;
     liveEvent[0].name = "TomorrowIsland";
     liveEvent[0].availableSeat = 294;
@@ -441,7 +449,6 @@ void addData(){
     filmEvent[1].availableSeat = 50;
     filmEvent[1].seatCapacity = 200;
     filmEvent[1].filmType = "2D";
-    
     
     for (int i = 0; i < liveSize; i++){
         MyFile << "Ref: " << liveEvent[i].ref << "\n";
