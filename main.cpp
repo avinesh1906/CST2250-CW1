@@ -91,15 +91,14 @@ int mainMenu()
                 printName(&liveEvent[i]);
             }
             
-            // prompt the user to enter an event
-            std::cout << "Choose your event: ";
             do {
+                std::cout << "Choose your event: ";
                 std::cin >> eventChoice;
 
-                if (eventChoice < 1 && eventChoice > liveSize) {
+                if (eventChoice < 1 || eventChoice > liveSize) {
                     std::cout << "Invalid choice.";
                 }
-            } while (eventChoice < 1 && eventChoice > liveSize);
+            } while (eventChoice < 1 || eventChoice > liveSize);
 
             // dynamically allocated variable of type Event
             Event* liveClass = new Live(&liveEvent[eventChoice - 1]);
@@ -121,15 +120,14 @@ int mainMenu()
                 printName(&standUpEvent[i]);
             }
 
-            // prompt user for input
-            std::cout << "Choose your event: ";
             do {
+                std::cout << "Choose your event: ";
                 std::cin >> eventChoice;
 
-                if (eventChoice < 1 && eventChoice > standUpSize) {
+                if (eventChoice < 1 || eventChoice > standUpSize) {
                     std::cout << "Invalid choice.";
                 }
-            } while (eventChoice < 1 && eventChoice > standUpSize);
+            } while (eventChoice < 1 || eventChoice > standUpSize);
 
             Event* standUP = new StandUp(&standUpEvent[eventChoice - 1]);
             standUp(standUP);
@@ -147,15 +145,15 @@ int mainMenu()
                 std::cout << (i+1) << ": ";
                 printName(&filmEvent[i]);
             }
-            
-            std::cout << "Choose your event: ";
+             
             do {
+                std::cout << "Choose your event: ";
                 std::cin >> eventChoice;
 
-                if (eventChoice < 1 && eventChoice > filmSize) {
+                if (eventChoice < 1 || eventChoice > filmSize) {
                     std::cout << "Invalid choice.";
                 }
-            } while (eventChoice < 1 && eventChoice > filmSize);
+            } while (eventChoice < 1 || eventChoice > filmSize);
 
             Event* filmFunction = new Film(&filmEvent[eventChoice - 1]);
             film(filmFunction); 
