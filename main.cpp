@@ -185,7 +185,7 @@ int mainMenu()
             mainMenu();
         
         // Exit
-        } else {
+        } else if (option == 5) {
             std::cout << "Bye Bye" << std::endl;
             
             // save data to the file
@@ -206,12 +206,11 @@ int mainMenu()
             filmEvent = NULL;
 
             return 0;
-        }
-        if (option <= 1 && option >= 5 ) {
+        } else if (option != 5) {
             std::cout << std::endl << "Invalid choice. Please enter 1,2,3,4 or 5" << std::endl;
         }
 
-    } while (option <= 1 && option >= 5);
+    } while (option != 5);
 
     return option;    
 }   
@@ -229,79 +228,97 @@ int menu(){
         std::cout << std::endl << "Enter your choice: " << std::endl;
         std::cin >> option;
 
-        if (option <= 1 && option >= 4) {
+        if (option < 1 || option > 4) {
             std::cout << std::endl << "Invalid choice. Please enter 1,2,3 or 4 " << std::endl;
         }
 
-    } while (option <= 1 && option >= 4);
-
-    return option;    
+    } while (option < 1 || option > 4); 
+    return option;
 }
 
 // Live event choice
 void live(Event* liveDetails)
 {   
-    std::cout << "You choose: " << liveDetails->getName() << std::endl;
-    int option = menu();
+    int option;
+    do {
+        std::cout << "You choose: " << liveDetails->getName() << std::endl;
+        option = menu();
 
-    if (option == 1) {
-        std::cout << std::endl << "Booking for Live Event" << std::endl;
-        liveDetails->booking();
+        if (option == 1) {
+            std::cout << std::endl << "Booking for Live Event" << std::endl;
+            liveDetails->booking();
 
-    } else if (option == 2){
-        std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-        liveDetails->cancel();
+        } else if (option == 2){
+            std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
+            liveDetails->cancel();
 
-    } else if (option == 3){
-        std::cout << std::endl << "List details and availability for Live Event" << std::endl;
-        liveDetails->description();
-    } else {
-        mainMenu();
-    }
+        } else if (option == 3){
+            std::cout << std::endl << "List details and availability for Live Event" << std::endl;
+            liveDetails->description();
+        } else if (option == 4){
+            mainMenu();
+        }
+        
+        if (option < 1 || option > 4) {
+            std::cout << std::endl << "Invalid choice. Please enter 1,2,3 or 4 " << std::endl;
+        }
+    } while (option < 1 || option > 4);
 
 }
 
 // Stand Up event choice
 void standUp(Event* standUpDetails)
 {
-    std::cout << "You choose: " << standUpDetails->getName() << std::endl;
-    int option = menu();
-    if (option == 1) {
-        std::cout << std::endl << "Booking for Standing Event" << std::endl;
-        standUpDetails->booking();
-
-    } else if (option == 2){
-        std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-        standUpDetails->cancel();
-    } else if (option == 3){
-        std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
-        standUpDetails->description();
-    } else {
-        mainMenu();
-    }
+    int option;
+    do{
+        std::cout << "You choose: " << standUpDetails->getName() << std::endl;
+        option = menu();
+        if (option == 1) {
+            std::cout << std::endl << "Booking for Standing Event" << std::endl;
+            standUpDetails->booking();
+        } else if (option == 2){
+            std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
+            standUpDetails->cancel();
+        } else if (option == 3){
+            std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
+            standUpDetails->description();
+        } else if (option ==4 ){
+            mainMenu();
+        }
+        if (option < 1 || option > 4) {
+            std::cout << std::endl << "Invalid choice. Please enter 1,2,3 or 4 " << std::endl;
+        }
+    } while (option < 1 || option > 4);
 
 }
 
 // Film event choice
 void film(Event* filmDetails)
 {
-    std::cout << "You choose: " << filmDetails->getName() << std::endl;
-    int option = menu();
+    int option;
+    do {
+        std::cout << "You choose: " << filmDetails->getName() << std::endl;
+        option = menu();
 
-    if (option == 1) {
-        std::cout << std::endl << "Booking for film Event" << std::endl;
-        filmDetails->booking();
+        if (option == 1) {
+            std::cout << std::endl << "Booking for film Event" << std::endl;
+            filmDetails->booking();
 
-    } else if (option == 2){
-        std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-        filmDetails->cancel();
+        } else if (option == 2){
+            std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
+            filmDetails->cancel();
 
-    } else if (option == 3){
-        std::cout << std::endl << "List details and availability for film Event" << std::endl;
-        filmDetails->description();
-    } else {
-        mainMenu();
-    }
+        } else if (option == 3){
+            std::cout << std::endl << "List details and availability for film Event" << std::endl;
+            filmDetails->description();
+        } else {
+            mainMenu();
+        }
+        if (option < 1 || option > 4) {
+            std::cout << std::endl << "Invalid choice. Please enter 1,2,3 or 4 " << std::endl;
+        }
+    } while (option < 1 || option > 4);
+
 }
 
 // load file 
