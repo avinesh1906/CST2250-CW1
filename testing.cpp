@@ -15,11 +15,11 @@ TEST_CASE("test live reference", "[Live]"){
     REQUIRE(live.getRef() == 1);
 }
 
-// TEST_CASE("test live max capacity", "[Live]"){
-//     Live live;
-//     live.setMaxCapacity(150);
-//     REQUIRE(live.getMaxCapacity() != 200);
-// }
+TEST_CASE("test live max capacity", "[Live]"){
+    Live live;
+    live.setMaxCapacity(150);
+    REQUIRE(live.getMaxCapacity() != 200);
+}
 
 // TEST_CASE("test live available seat", "[Live]"){
 //     Live live;
