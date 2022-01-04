@@ -19,4 +19,4 @@ events.o : events.cpp events.h
 .PHONY : clean
 clean :
 	$(RM) *.o
-	$(RM) execute
+	$(RM) *.exe
