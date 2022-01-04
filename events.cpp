@@ -7,10 +7,37 @@
 // constructor for Event class
 Event::Event(details* array)
 {
-    this->ref = array->ref;
-    this->name = array->name;
-    this->availableSeat = &(array->availableSeat);
-    this->maxCapacity = array->seatCapacity;
+    setRef(array->ref);
+    setName(array->name);
+    setAvailableSeat(&(array->availableSeat));
+    setMaxCapacity(array->seatCapacity);
+}
+
+void Event::setName(std::string Name)
+{
+    name = Name;
+}
+
+void Event::setRef(int Ref)
+{
+    ref = Ref;
+}
+
+void Event::setMaxCapacity(int capacity){
+    maxCapacity = capacity;
+}
+
+void Event::setAvailableSeat(int* availableseat){
+    availableSeat = availableseat;
+}
+
+int Event::getAvailableSeat(){
+    return *(availableSeat);
+}
+
+Event::Event()
+{
+
 }
 
 // Deconstructor for Event class
@@ -39,6 +66,11 @@ int Event::getMaxCapacity(){
 
 // Live class constructor
 Live::Live(details* array) : Event(array)
+{
+
+}
+
+Live::Live() : Event()
 {
 
 }

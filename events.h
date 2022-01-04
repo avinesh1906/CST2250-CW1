@@ -14,17 +14,26 @@ class Event {
     protected:
         int* availableSeat;
     public:
+        Event();
         //explicit constructor
         Event(details* array);
-
         //deconstructor
         virtual ~Event();
 
         //member functions
         virtual void description() = 0;
+
+        void setName(std::string name);
         std::string getName();
+
+        void setRef(int ref);
         int getRef();
+
+        void setMaxCapacity(int maxCapacity);
         int getMaxCapacity();
+
+        void setAvailableSeat(int* availableSeat);
+        int getAvailableSeat();
 
         //base class
         virtual void booking() = 0;
@@ -36,6 +45,7 @@ class Event {
 class Live : public Event {
     public:
         Live(details* array);
+        Live();
         void description();
         void booking();
         void cancel();
