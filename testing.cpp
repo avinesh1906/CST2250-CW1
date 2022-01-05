@@ -83,3 +83,26 @@ TEST_CASE("test live cancel booking", "[Live()]"){
     REQUIRE(live.getAvailableSeat() == 175);
 }
 
+TEST_CASE("test film booking", "[Film()]"){
+    Film film;
+
+    int availableSeat = 50;
+    film.availableSeatPtr(&availableSeat);
+
+    REQUIRE(film.getAvailableSeat() != 300);
+
+    film.booking(10);
+    REQUIRE(film.getAvailableSeat() == 40);
+}
+
+TEST_CASE("test film cancel booking", "[Live()]"){
+    Film film;
+
+    int availableSeat = 10;
+    film.availableSeatPtr(&availableSeat);
+
+    REQUIRE(film.getAvailableSeat() == 10);
+
+    film.cancel(5);
+    REQUIRE(film.getAvailableSeat() == 15);
+}
