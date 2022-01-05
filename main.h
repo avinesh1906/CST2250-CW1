@@ -81,4 +81,6 @@ void determineSize();
 
 void booking(Event* details);
 
+void cancelBooking(Event* details);
+
 #endif

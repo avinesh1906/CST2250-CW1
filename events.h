@@ -36,7 +36,7 @@ class Event {
 
         //base class
         virtual void booking(int seatToBeBooked) = 0;
-        virtual void cancel() = 0;
+        virtual void cancel(int seatsToCancel) = 0;
         
 };
 
@@ -47,7 +47,7 @@ class Live : public Event {
         Live();
         void description();
         void booking(int seatToBeBooked);
-        void cancel();
+        void cancel(int seatsToCancel);
 };
 
 // StandUp class - Derived from event
@@ -60,7 +60,7 @@ class StandUp : public Event {
         StandUp(details* array);
         void description();
         void booking(int seatToBeBooked);
-        void cancel();
+        void cancel(int seatsToCancel);
 };
 
 // Film class - Derived from event
@@ -73,7 +73,7 @@ class Film : public Event {
         Film(details* array);
         void description();
         void booking(int seatToBeBooked);
-        void cancel();
+        void cancel(int seatsToCancel);
         std::string getType();
 };
 

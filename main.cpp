@@ -255,6 +255,27 @@ void booking(Event* details){
     details->booking(seatToBeBooked);
 }
 
+void cancelBooking(Event* details)
+{
+    int seatsToCancel = 0;
+    std::cout << "Number of seats already booked: " << (details->getMaxCapacity() -  details->getAvailableSeat()) << std::endl;
+    if (details->getAvailableSeat() != details->getMaxCapacity()){
+        std::cout << "You can proceed with cancellation" << std::endl;
+        do {
+            std::cout << "How many booking to cancel? " << std::endl;
+            std::cin >> seatsToCancel;
+            if (( details->getAvailableSeat() + seatsToCancel) >  details->getMaxCapacity()){
+                std::cout << "Error. Cannot proceed with cancellation" << std::endl;
+            }
+
+        } while ((details->getAvailableSeat() + seatsToCancel) > details->getMaxCapacity());
+    } else {
+        std::cout << "There is no booking to cancel" << std::endl;
+    }
+    details->cancel(seatsToCancel);
+}
+
+
 // Live event choice
 void live(Event* liveDetails)
 {   
@@ -269,7 +290,7 @@ void live(Event* liveDetails)
 
         } else if (option == 2){
             std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-            liveDetails->cancel();
+            cancelBooking(liveDetails);
 
         } else if (option == 3){
             std::cout << std::endl << "List details and availability for Live Event" << std::endl;
@@ -297,7 +318,7 @@ void standUp(Event* standUpDetails)
             booking(standUpDetails);
         } else if (option == 2){
             std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-            standUpDetails->cancel();
+            cancelBooking(standUpDetails);
         } else if (option == 3){
             std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
             standUpDetails->description();
@@ -325,7 +346,7 @@ void film(Event* filmDetails)
 
         } else if (option == 2){
             std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
-            filmDetails->cancel();
+            cancelBooking(filmDetails);
 
         } else if (option == 3){
             std::cout << std::endl << "List details and availability for film Event" << std::endl;
