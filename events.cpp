@@ -83,9 +83,7 @@ void Live::description(){
 // Booking for live event
 void Live::booking(int seatToBeBooked)
 {
-
     setAvailableSeat(getAvailableSeat() - seatToBeBooked);
-
 }
 
 // cancel the live event
@@ -125,30 +123,14 @@ StandUp::StandUp() : Event()
 // book stand Up event
 void StandUp::booking(int seatToBeBooked)
 {
-
     int seatNo;
-    std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
-    std::cout << "Number of seats available for booking: " <<  getAvailableSeat() << std::endl;
     std::cout << "Seats already booked: " << std::endl;
     // display the seat track 
     for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
         std::cout << seatTrack->at(i) << ", ";
     }
     std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
-    if (getMaxCapacity() > getAvailableSeat()){
-        std::cout << "You can proceed with booking " << std::endl;
-        do {
-            std::cout << std::endl << "How much seat to book? " << std::endl;
-            std::cin >> seatToBeBooked;
-            if ((getAvailableSeat()- seatToBeBooked) < 0) {
-                std::cout << "Error. Maximum Seat Capacity reached." << std::endl;
-            }
-        } while ((getAvailableSeat() - seatToBeBooked) < 0);
-        
-    } else {
-        std::cout << "No more seats available " << std::endl;
-    }
-    
+
     // choose seat number to book
     for (int i = 1; i <= seatToBeBooked; i++){
         do {
