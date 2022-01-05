@@ -43,9 +43,7 @@ Event::Event()
 // Deconstructor for Event class
 Event::~Event()
 {
-    // clear the heap storage
-    delete availableSeat;
-    availableSeat = NULL;
+
 }
 
 // get the name of the event
@@ -134,6 +132,11 @@ void Live::cancel()
 StandUp::StandUp(details* array) : Event(array)
 {
     seatTrack = &(array->seatTrack);
+}
+
+StandUp::StandUp() : Event()
+{
+
 }
 
 // book stand Up event
@@ -245,6 +248,11 @@ void StandUp::description(){
 Film::Film(details* array) : Event(array)
 {
     this->type = array->filmType;
+}
+
+Film::Film() : Event()
+{
+
 }
 
 // booking for film event

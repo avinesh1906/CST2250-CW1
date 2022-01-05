@@ -57,6 +57,7 @@ class StandUp : public Event {
         std::vector <int> *seatTrack;
 
     public:
+        StandUp();
         StandUp(details* array);
         void description();
         void booking();
@@ -69,6 +70,7 @@ class Film : public Event {
         std::string type;
 
     public:
+        Film();
         Film(details* array);
         void description();
         void booking();
