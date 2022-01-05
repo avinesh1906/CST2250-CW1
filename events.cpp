@@ -81,26 +81,9 @@ void Live::description(){
 }
 
 // Booking for live event
-void Live::booking()
+void Live::booking(int seatToBeBooked)
 {
-    int seatToBeBooked = 0;
-    std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
-    std::cout << "Number of seats available for booking: " << getAvailableSeat() << std::endl;
-    // check if available seat is less than maximum seating capacity
-    if (getMaxCapacity() > getAvailableSeat()){
-        std::cout << "You can proceed with booking " << std::endl;
-        do {
-            std::cout << std::endl << "How much seat to book? " << std::endl;
-            std::cin >> seatToBeBooked;
-            if ((getAvailableSeat() - seatToBeBooked) < 0) {
-                std::cout << "Error. Maximum Seat Capacity reached." << std::endl;
-            }
-        } while ((getAvailableSeat() - seatToBeBooked) < 0);
-        
-    } else {
-        std::cout << "No more seats available " << std::endl;
-    }
-    // deduct the seat booked from available seat
+
     setAvailableSeat(getAvailableSeat() - seatToBeBooked);
 
 }
@@ -140,10 +123,9 @@ StandUp::StandUp() : Event()
 }
 
 // book stand Up event
-void StandUp::booking()
+void StandUp::booking(int seatToBeBooked)
 {
 
-    int seatToBeBooked = 0;
     int seatNo;
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
     std::cout << "Number of seats available for booking: " <<  getAvailableSeat() << std::endl;
@@ -257,9 +239,9 @@ Film::Film() : Event()
 }
 
 // booking for film event
-void Film::booking()
+void Film::booking(int seatToBeBooked)
 {
-    int seatToBeBooked = 0;
+
     std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
     std::cout << "Number of seats available for booking: " <<  getMaxCapacity() << std::endl;
     if (getMaxCapacity() > getAvailableSeat()){

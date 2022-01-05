@@ -233,6 +233,28 @@ int menu(){
     return option;
 }
 
+void booking(Event* details){
+    int seatToBeBooked = 0;
+    std::cout <<"Theatre maximum capacity: " <<  details->getMaxCapacity() << std::endl;
+    std::cout << "Number of seats available for booking: " << details->getAvailableSeat() << std::endl;
+    // check if available seat is less than maximum seating capacity
+    if (details->getMaxCapacity() > details->getAvailableSeat()){
+        std::cout << "You can proceed with booking " << std::endl;
+        do {
+            std::cout << std::endl << "How much seat to book? " << std::endl;
+            std::cin >> seatToBeBooked;
+            if ((details->getAvailableSeat() - seatToBeBooked) < 0) {
+                std::cout << "Error. Maximum Seat Capacity reached." << std::endl;
+            }
+        } while ((details->getAvailableSeat() - seatToBeBooked) < 0);
+        
+    } else {
+        std::cout << "No more seats available " << std::endl;
+    }
+    // deduct the seat booked from available seat
+    details->booking(seatToBeBooked);
+}
+
 // Live event choice
 void live(Event* liveDetails)
 {   
@@ -243,7 +265,7 @@ void live(Event* liveDetails)
 
         if (option == 1) {
             std::cout << std::endl << "Booking for Live Event" << std::endl;
-            liveDetails->booking();
+            booking(liveDetails);
 
         } else if (option == 2){
             std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
@@ -272,7 +294,7 @@ void standUp(Event* standUpDetails)
         option = menu();
         if (option == 1) {
             std::cout << std::endl << "Booking for Standing Event" << std::endl;
-            standUpDetails->booking();
+            booking(standUpDetails);
         } else if (option == 2){
             std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
             standUpDetails->cancel();
@@ -299,7 +321,7 @@ void film(Event* filmDetails)
 
         if (option == 1) {
             std::cout << std::endl << "Booking for film Event" << std::endl;
-            filmDetails->booking();
+            booking(filmDetails);
 
         } else if (option == 2){
             std::cout << std::endl << "Cancel/Refund Booking" << std::endl;
@@ -544,3 +566,4 @@ void determineSize()
     
     myFile.close();
 }
+

@@ -77,4 +77,8 @@ void saveData();
     @return no return
  */
 void determineSize();
+
+
+void booking(Event* details);
+
 #endif

@@ -35,7 +35,7 @@ class Event {
         int getAvailableSeat();
 
         //base class
-        virtual void booking() = 0;
+        virtual void booking(int seatToBeBooked) = 0;
         virtual void cancel() = 0;
         
 };
@@ -46,7 +46,7 @@ class Live : public Event {
         Live(details* array);
         Live();
         void description();
-        void booking();
+        void booking(int seatToBeBooked);
         void cancel();
 };
 
@@ -59,7 +59,7 @@ class StandUp : public Event {
         StandUp();
         StandUp(details* array);
         void description();
-        void booking();
+        void booking(int seatToBeBooked);
         void cancel();
 };
 
@@ -72,7 +72,7 @@ class Film : public Event {
         Film();
         Film(details* array);
         void description();
-        void booking();
+        void booking(int seatToBeBooked);
         void cancel();
         std::string getType();
 };
