@@ -8,9 +8,9 @@ TEST_CASE("test live ", "[Live()]"){
     live.setRef(1);
     live.setName("TomorrowIsland");
     live.setMaxCapacity(300);
-    int seat = 20;
 
-    live.availableSeatPtr(&seat);
+    int availableSeat = 20;
+    live.availableSeatPtr(&availableSeat);
     
     REQUIRE(live.getRef() == 1);
     REQUIRE(live.getName() == "TomorrowIsland"); 
@@ -19,6 +19,7 @@ TEST_CASE("test live ", "[Live()]"){
 
     live.setAvailableSeat(10);
     REQUIRE(live.getAvailableSeat() == 10);
+    
     REQUIRE(live.description() == "TomorrowIsland has 10 available seats out of 300 seats.");
 }
 
@@ -28,8 +29,8 @@ TEST_CASE("test standup ", "[StandUp()]"){
     standUp.setName("Kaya");
     standUp.setMaxCapacity(200);
 
-    int seat = 50;
-    standUp.availableSeatPtr(&seat);
+    int availableSeat = 50;
+    standUp.availableSeatPtr(&availableSeat);
 
     REQUIRE(standUp.getRef() == 2);
     REQUIRE(standUp.getName() == "Kaya"); 
@@ -43,8 +44,9 @@ TEST_CASE("test film ", "[Film()]"){
     film.setName("Spiderman: Age of Covid");
     film.setMaxCapacity(200);
     film.setType("3D");
-    int seat = 150;
-    film.availableSeatPtr(&seat);
+
+    int availableSeat = 150;
+    film.availableSeatPtr(&availableSeat);
 
     REQUIRE(film.getRef() == 3);
     REQUIRE(film.getName() != "Avengers: Age of Covid"); 
@@ -57,6 +59,27 @@ TEST_CASE("test film ", "[Film()]"){
     REQUIRE(film.description() == "Film Spiderman: Age of Covid of film type 3D has 10 available seats out of 200 seats.");
 }
 
-// TEST_CASE("test film booking"){
+TEST_CASE("test live booking", "[Live()]"){
+    Live live;
 
-// }
+    int availableSeat = 150;
+    live.availableSeatPtr(&availableSeat);
+
+    REQUIRE(live.getAvailableSeat() == 150);
+
+    live.booking(50);
+    REQUIRE(live.getAvailableSeat() == 100);
+}
+
+TEST_CASE("test live cancel booking", "[Live()]"){
+    Live live;
+
+    int availableSeat = 150;
+    live.availableSeatPtr(&availableSeat);
+
+    REQUIRE(live.getAvailableSeat() == 150);
+
+    live.cancel(25);
+    REQUIRE(live.getAvailableSeat() == 175);
+}
+
