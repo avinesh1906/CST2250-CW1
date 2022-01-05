@@ -61,6 +61,8 @@ class StandUp : public Event {
         void description();
         void booking(int seatToBeBooked);
         void cancel(int seatsToCancel);
+        void seatToBook(int seatToBeBooked);
+        void seatToUnbook(int seatsToCancel);
 };
 
 // Film class - Derived from event

@@ -108,6 +108,15 @@ StandUp::StandUp() : Event()
 // book stand Up event
 void StandUp::booking(int seatToBeBooked)
 {
+    // decrease available seat
+    setAvailableSeat(getAvailableSeat() - seatToBeBooked);
+    seatToBook(seatToBeBooked);
+
+}
+
+
+void StandUp::seatToBook(int seatToBeBooked)
+{   
     int seatNo;
     std::cout << "Seats already booked: " << std::endl;
     // display the seat track 
@@ -127,15 +136,16 @@ void StandUp::booking(int seatToBeBooked)
         } while(std::count(seatTrack->begin(), seatTrack->end(), seatNo));
         seatTrack->push_back(seatNo);
     }
-
-    // decrease available seat
-    setAvailableSeat(getAvailableSeat() - seatToBeBooked);
-    
-
 }
 
 // cancel booking for standup event
-void StandUp::cancel( int seatsToCancel)
+void StandUp::cancel(int seatsToCancel)
+{
+    setAvailableSeat(getAvailableSeat() + seatsToCancel);
+    seatToUnbook(seatsToCancel);
+}
+
+void StandUp::seatToUnbook(int seatsToCancel)
 {
     int seatNo;
     std::cout << "Seats already booked: " << std::endl;
@@ -162,8 +172,6 @@ void StandUp::cancel( int seatsToCancel)
         
         }   
     }
-
-    setAvailableSeat(getAvailableSeat() + seatsToCancel);
 
 }
 
