@@ -223,22 +223,6 @@ Film::Film() : Event()
 // booking for film event
 void Film::booking(int seatToBeBooked)
 {
-
-    std::cout <<"Theatre maximum capacity: " <<  getMaxCapacity() << std::endl;
-    std::cout << "Number of seats available for booking: " <<  getMaxCapacity() << std::endl;
-    if (getMaxCapacity() > getAvailableSeat()){
-        std::cout << "You can proceed with booking " << std::endl;
-        do {
-            std::cout << std::endl << "How much seat to book? " << std::endl;
-            std::cin >> seatToBeBooked;
-            if ((getMaxCapacity() - seatToBeBooked) < 0) {
-                std::cout << "Error. Maximum Seat Capacity reached." << std::endl;
-            }
-        } while ((getMaxCapacity() - seatToBeBooked) < 0);
-        
-    } else {
-        std::cout << "No more seats available " << std::endl;
-    }
     setAvailableSeat(getAvailableSeat() - seatToBeBooked);
 
 }
