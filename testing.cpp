@@ -3,6 +3,9 @@
 #include "events.h"
 #include "struct.h"
 
+/* Helper function to check if a vector contains the book seat track */
+
+
 TEST_CASE("test live ", "[Live()]"){
     Live live;
     live.setRef(1);
@@ -105,4 +108,35 @@ TEST_CASE("test film cancel booking", "[Live()]"){
 
     film.cancel(5);
     REQUIRE(film.getAvailableSeat() == 15);
+}
+
+TEST_CASE("test standUp booking", "[StandUp()]"){
+    StandUp standUp;
+    
+    int seatToBook = 1;
+    int availableSeat = 296;
+    std::vector <int> list = {1,2,3,4};
+    standUp.setSeatTrack(&list);
+    standUp.availableSeatPtr(&availableSeat);
+
+    REQUIRE(standUp.getAvailableSeat() != 300);
+
+    standUp.booking(seatToBook);
+    REQUIRE(standUp.getAvailableSeat() == 295);
+
+}
+
+TEST_CASE("test standUp cancel booking", "[StandUp()]"){
+    StandUp standUp;
+
+    std::vector <int> list = {1,2,3,4,5};
+    standUp.setSeatTrack(&list);
+
+    int availableSeat = 195;
+    standUp.availableSeatPtr(&availableSeat);
+
+    REQUIRE(standUp.getAvailableSeat() != 200);
+
+    standUp.cancel(2);
+    REQUIRE(standUp.getAvailableSeat() != 190);
 }

@@ -62,6 +62,7 @@ class StandUp : public Event {
         std::string  description();
         void booking(int seatToBeBooked);
         void cancel(int seatsToCancel);
+        void setSeatTrack(std::vector <int> *list);
         void seatToBook(int seatToBeBooked);
         void seatToUnbook(int seatsToCancelst);
 };
