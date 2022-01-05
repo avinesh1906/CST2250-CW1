@@ -20,7 +20,7 @@ class Event {
         virtual ~Event();
 
         //member functions
-        virtual void description() = 0;
+        virtual std::string  description() = 0;
 
         void setName(std::string name);
         std::string getName();
@@ -45,7 +45,7 @@ class Live : public Event {
     public:
         Live(details* array);
         Live();
-        void description();
+        std::string  description();
         void booking(int seatToBeBooked);
         void cancel(int seatsToCancel);
 };
@@ -58,11 +58,11 @@ class StandUp : public Event {
     public:
         StandUp();
         StandUp(details* array);
-        void description();
+        std::string  description();
         void booking(int seatToBeBooked);
         void cancel(int seatsToCancel);
         void seatToBook(int seatToBeBooked);
-        void seatToUnbook(int seatsToCancel);
+        void seatToUnbook(int seatsToCancelst);
 };
 
 // Film class - Derived from event
@@ -73,7 +73,7 @@ class Film : public Event {
     public:
         Film();
         Film(details* array);
-        void description();
+        std::string  description();
         void booking(int seatToBeBooked);
         void cancel(int seatsToCancel);
         std::string getType();

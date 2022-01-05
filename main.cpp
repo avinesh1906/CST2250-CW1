@@ -171,10 +171,10 @@ int mainMenu()
             for(unsigned i = 0; i < events.size(); i++){
                 // display the details
                 if (ref == events[i]->getRef()){
-                    events[i]->description() ;
+                    std::cout << events[i]->description() ;
                 } else {
                     std::cout << std::endl;
-                    events[i]->description() ;
+                    std::cout << events[i]->description() ;
                     ref = events[i]->getRef();
                 }   
             }
@@ -294,7 +294,7 @@ void live(Event* liveDetails)
 
         } else if (option == 3){
             std::cout << std::endl << "List details and availability for Live Event" << std::endl;
-            liveDetails->description();
+            std::cout << liveDetails->description();
         } else if (option == 4){
             mainMenu();
         }
@@ -321,7 +321,7 @@ void standUp(Event* standUpDetails)
             cancelBooking(standUpDetails);
         } else if (option == 3){
             std::cout << std::endl << "List details and availability for Standing Event" << std::endl;
-            standUpDetails->description();
+            std::cout << standUpDetails->description();
         } else if (option ==4 ){
             mainMenu();
         }
@@ -350,7 +350,7 @@ void film(Event* filmDetails)
 
         } else if (option == 3){
             std::cout << std::endl << "List details and availability for film Event" << std::endl;
-            filmDetails->description();
+            std::cout << filmDetails->description();
         } else {
             mainMenu();
         }

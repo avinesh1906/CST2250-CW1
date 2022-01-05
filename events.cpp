@@ -74,10 +74,10 @@ Live::Live() : Event()
 }
 
 // Description for live events
-void Live::description(){
+std::string Live::description(){
 
-    std::cout <<  getName() + " has " +  std::to_string(getAvailableSeat()) +  " available seats out of " + std::to_string(getMaxCapacity()) + " seats." << std::endl;
-    
+   return getName() + " has " +  std::to_string(getAvailableSeat()) +  " available seats out of " + std::to_string(getMaxCapacity()) + " seats. \n" ;
+
 }
 
 // Booking for live event
@@ -176,16 +176,18 @@ void StandUp::seatToUnbook(int seatsToCancel)
 }
 
 // get description of the standUp event
-void StandUp::description(){
-    std::cout << getName() << " has the following booked seats: " << std::endl;
+std::string  StandUp::description(){
+    std::string returnString = "";
+
     // print the seat track
-    for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
-        std::cout << seatTrack->at(i) << ", ";
+    for (size_t i = 0; i < seatTrack->size() - 1; i++){
+        returnString += std::to_string(seatTrack->at(i)) + ", ";
     }
-    std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
-    std::cout << "A total of " << getAvailableSeat() << " available seats out of " << 
-    getMaxCapacity() << " seats." << std::endl;
-    
+
+    returnString += std::to_string(seatTrack->at(seatTrack->size() -1 ));
+    return getName() + " has the following booked seats: \n" + returnString + "\n" 
+    + "A total of " + std::to_string(getAvailableSeat()) + " available seats out of " 
+    + std::to_string(getMaxCapacity()) + " seats. \n";
 }
 
 Film::Film(details* array) : Event(array)
@@ -213,11 +215,11 @@ void Film::cancel(int seatsToCancel)
 }
 
 // desciption for film event
-void Film::description()
+std::string Film::description()
 {
-    std::cout << "Film " << getName() << " of film type " 
-    << getType() << " has " << getAvailableSeat() << " available seats out of " 
-    << getMaxCapacity() << " seats." << std::endl;
+    return "Film " + getName() + " of film type " 
+    + getType() + " has " + std::to_string(getAvailableSeat()) + " available seats out of " 
+    +  std::to_string(getMaxCapacity()) + " seats. \n";
 
 }
 
