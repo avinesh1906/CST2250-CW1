@@ -101,12 +101,17 @@ void Live::cancel(int seatsToCancel)
 // StandUp event constructor
 StandUp::StandUp(details* array) : Event(array)
 {
-    seatTrack = &(array->seatTrack);
+    setSeatTrack(&(array->seatTrack));
 }
 
 StandUp::StandUp() : Event()
 {
 
+}
+
+void StandUp::setSeatTrack(std::vector <int> *list)
+{
+    seatTrack = list;
 }
 
 // book stand Up event
