@@ -20,7 +20,7 @@ class Event {
         virtual ~Event();
 
         //member functions
-        virtual std::string  description() = 0;
+        virtual std::string description() = 0;
 
         void setName(std::string name);
         std::string getName();
@@ -31,6 +31,7 @@ class Event {
         void setMaxCapacity(int maxCapacity);
         int getMaxCapacity();
 
+        void availableSeatPtr(int* availableseat);
         void setAvailableSeat(int availableSeat);
         int getAvailableSeat();
 
@@ -76,6 +77,7 @@ class Film : public Event {
         std::string  description();
         void booking(int seatToBeBooked);
         void cancel(int seatsToCancel);
+        void setType(std::string filmType);
         std::string getType();
 };
 

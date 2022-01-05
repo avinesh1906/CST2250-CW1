@@ -171,7 +171,7 @@ int mainMenu()
             for(unsigned i = 0; i < events.size(); i++){
                 // display the details
                 if (ref == events[i]->getRef()){
-                    std::cout << events[i]->description() ;
+                    std::cout << events[i]->description() << std::endl;
                 } else {
                     std::cout << std::endl;
                     std::cout << events[i]->description() ;
@@ -294,7 +294,7 @@ void live(Event* liveDetails)
 
         } else if (option == 3){
             std::cout << std::endl << "List details and availability for Live Event" << std::endl;
-            std::cout << liveDetails->description();
+            std::cout << liveDetails->description() << std::endl;
         } else if (option == 4){
             mainMenu();
         }

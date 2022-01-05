@@ -9,7 +9,7 @@ Event::Event(details* array)
 {
     setRef(array->ref);
     setName(array->name);
-    availableSeat = &(array->availableSeat);
+    availableSeatPtr(&(array->availableSeat));
     setMaxCapacity(array->seatCapacity);
 }
 
@@ -25,6 +25,10 @@ void Event::setRef(int Ref)
 
 void Event::setMaxCapacity(int capacity){
     maxCapacity = capacity;
+}
+
+void Event::availableSeatPtr(int* seatPtr){
+    availableSeat = seatPtr;
 }
 
 void Event::setAvailableSeat(int availableseat){
@@ -76,7 +80,7 @@ Live::Live() : Event()
 // Description for live events
 std::string Live::description(){
 
-   return getName() + " has " +  std::to_string(getAvailableSeat()) +  " available seats out of " + std::to_string(getMaxCapacity()) + " seats. \n" ;
+   return getName() + " has " +  std::to_string(getAvailableSeat()) +  " available seats out of " + std::to_string(getMaxCapacity()) + " seats." ;
 
 }
 
@@ -192,12 +196,17 @@ std::string  StandUp::description(){
 
 Film::Film(details* array) : Event(array)
 {
-    this->type = array->filmType;
+    setType(array->filmType);
 }
 
 Film::Film() : Event()
 {
 
+}
+
+void Film::setType(std::string filmType)
+{
+    type = filmType; 
 }
 
 // booking for film event
@@ -219,7 +228,7 @@ std::string Film::description()
 {
     return "Film " + getName() + " of film type " 
     + getType() + " has " + std::to_string(getAvailableSeat()) + " available seats out of " 
-    +  std::to_string(getMaxCapacity()) + " seats. \n";
+    +  std::to_string(getMaxCapacity()) + " seats.";
 
 }
 
