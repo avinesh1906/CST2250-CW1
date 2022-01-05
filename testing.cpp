@@ -8,9 +8,7 @@ TEST_CASE("test live ", "[Live()]"){
     live.setRef(1);
     live.setName("TomorrowIsland");
     live.setMaxCapacity(150);
-
-    int seat = 10;
-    live.setAvailableSeat(&(seat));
+    live.setAvailableSeat(20);
 
     REQUIRE(live.getRef() == 1);
     REQUIRE(live.getName() == "TomorrowIsland"); 
@@ -18,14 +16,12 @@ TEST_CASE("test live ", "[Live()]"){
     REQUIRE(live.getAvailableSeat() != 50);
 }
 
-TEST_CASE("test standup ", "[Live()]"){
+TEST_CASE("test standup ", "[StandUp()]"){
     StandUp standUp;
     standUp.setRef(1);
     standUp.setName("TomorrowIsland");
     standUp.setMaxCapacity(150);
-
-    int seat = 10;
-    standUp.setAvailableSeat(&(seat));
+    standUp.setAvailableSeat(10);
 
     REQUIRE(standUp.getRef() == 1);
     REQUIRE(standUp.getName() == "TomorrowIsland"); 
@@ -33,14 +29,12 @@ TEST_CASE("test standup ", "[Live()]"){
     REQUIRE(standUp.getAvailableSeat() != 50);
 }
 
-TEST_CASE("test film ", "[Live()]"){
+TEST_CASE("test film ", "[Film()]"){
     Film film;
     film.setRef(1);
     film.setName("TomorrowIsland");
     film.setMaxCapacity(150);
-
-    int seat = 10;
-    film.setAvailableSeat(&(seat));
+    film.setAvailableSeat(10);
 
     REQUIRE(film.getRef() == 1);
     REQUIRE(film.getName() == "TomorrowIsland"); 

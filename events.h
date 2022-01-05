@@ -11,7 +11,6 @@ class Event {
         int ref;
         std::string name;
         int maxCapacity;
-    protected:
         int* availableSeat;
     public:
         Event();
@@ -32,7 +31,7 @@ class Event {
         void setMaxCapacity(int maxCapacity);
         int getMaxCapacity();
 
-        void setAvailableSeat(int* availableSeat);
+        void setAvailableSeat(int availableSeat);
         int getAvailableSeat();
 
         //base class

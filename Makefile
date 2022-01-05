@@ -13,7 +13,7 @@ test: testing
 testing : testing.cpp events.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-events.o : events.cpp events.h
+events.o : events.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
 .PHONY : clean
