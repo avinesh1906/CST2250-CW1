@@ -41,15 +41,7 @@ class Event {
         
 };
 
-// Live class - Derived from event
-class Live : public Event {
-    public:
-        Live(details* array);
-        Live();
-        std::string  description();
-        void booking(int seatToBeBooked);
-        void cancel(int seatsToCancel);
-};
+
 
 // StandUp class - Derived from event
 class StandUp : public Event {

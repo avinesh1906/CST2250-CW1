@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <vector>
 
+#include "live.h"
+
 // constructor for Event class
 Event::Event(details* array)
 {
@@ -64,38 +66,6 @@ int Event::getRef()
 // get the maximum capacity of the event
 int Event::getMaxCapacity(){
     return maxCapacity;
-}
-
-// Live class constructor
-Live::Live(details* array) : Event(array)
-{
-
-}
-
-Live::Live() : Event()
-{
-
-}
-
-// Description for live events
-std::string Live::description(){
-
-   return getName() + " has " +  std::to_string(getAvailableSeat()) +  " available seats out of " + std::to_string(getMaxCapacity()) + " seats." ;
-
-}
-
-// Booking for live event
-void Live::booking(int seatToBeBooked)
-{
-    setAvailableSeat(getAvailableSeat() - seatToBeBooked);
-}
-
-// cancel the live event
-void Live::cancel(int seatsToCancel)
-{
-    // increase available seat
-    setAvailableSeat(getAvailableSeat() + seatsToCancel);
-
 }
 
 // StandUp event constructor
