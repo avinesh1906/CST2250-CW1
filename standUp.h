@@ -1,3 +1,6 @@
+#ifndef __STANDUP_H_
+#define __STANDUP_H_
+
 #include "events.h"
 
 #include <vector>
@@ -17,3 +20,5 @@ class StandUp : public Event {
         void seatToBook(int seatToBeBooked);
         void seatToUnbook(int seatsToCancelst);
 };
+
+#endif
