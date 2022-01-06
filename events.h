@@ -41,45 +41,4 @@ class Event {
         
 };
 
-// Live class - Derived from event
-class Live : public Event {
-    public:
-        Live(details* array);
-        Live();
-        std::string  description();
-        void booking(int seatToBeBooked);
-        void cancel(int seatsToCancel);
-};
-
-// StandUp class - Derived from event
-class StandUp : public Event {
-    private:
-        std::vector <int> *seatTrack;
-
-    public:
-        StandUp();
-        StandUp(details* array);
-        std::string  description();
-        void booking(int seatToBeBooked);
-        void cancel(int seatsToCancel);
-        void setSeatTrack(std::vector <int> *list);
-        void seatToBook(int seatToBeBooked);
-        void seatToUnbook(int seatsToCancelst);
-};
-
-// Film class - Derived from event
-class Film : public Event {
-    private:
-        std::string type;
-
-    public:
-        Film();
-        Film(details* array);
-        std::string  description();
-        void booking(int seatToBeBooked);
-        void cancel(int seatsToCancel);
-        void setType(std::string filmType);
-        std::string getType();
-};
-
 #endif
