@@ -80,9 +80,18 @@ void saveData();
  */
 void determineSize();
 
-
+/* 
+    To add booking for an event
+    @param details stores the details of the chosen event
+    @return no return
+ */
 void booking(Event* details);
 
+/* 
+    To cancel booking for an event
+    @param details stores the details of the chosen event
+    @return no return
+ */
 void cancelBooking(Event* details);
 
 #endif
