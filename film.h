@@ -1,3 +1,6 @@
+#ifndef __FILM_H_
+#define __FILM_H_
+
 #include "events.h"
 // Film class - Derived from event
 class Film : public Event {
@@ -13,3 +16,5 @@ class Film : public Event {
         void setType(std::string filmType);
         std::string getType();
 };
+
+#endif
