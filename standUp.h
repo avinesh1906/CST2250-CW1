@@ -2,7 +2,7 @@
 #define __STANDUP_H_
 
 #include "events.h"
-
+#include "struct.h"
 #include <vector>
 
 // StandUp class - Derived from event

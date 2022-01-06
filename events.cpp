@@ -1,8 +1,6 @@
 #include "events.h"
 #include <string>
 
-#include "live.h"
-
 // constructor for Event class
 Event::Event(details* array)
 {

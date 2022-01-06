@@ -1,4 +1,5 @@
 #include "live.h"
+#include "events.h"
 
 // Live class constructor
 Live::Live(details* array) : Event(array)

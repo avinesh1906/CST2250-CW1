@@ -6,6 +6,8 @@
 #include "events.h"
 #include "struct.h"
 #include "live.h"
+#include "film.h"
+#include "standUp.h"
 
 /* 
     To display the main menu for the staff to choose between events and list all events' details.
@@ -78,9 +80,18 @@ void saveData();
  */
 void determineSize();
 
-
+/* 
+    To add booking for an event
+    @param details stores the details of the chosen event
+    @return no return
+ */
 void booking(Event* details);
 
+/* 
+    To cancel booking for an event
+    @param details stores the details of the chosen event
+    @return no return
+ */
 void cancelBooking(Event* details);
 
 #endif

@@ -2,6 +2,7 @@
 #define __LIVE_H_
 
 #include "events.h"
+#include "struct.h"
 
 // Live class - Derived from event
 class Live : public Event {

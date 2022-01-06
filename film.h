@@ -2,6 +2,8 @@
 #define __FILM_H_
 
 #include "events.h"
+#include "struct.h"
+
 // Film class - Derived from event
 class Film : public Event {
     private:
