@@ -1,3 +1,4 @@
+#include "events.h"
 #include "film.h"
 
 Film::Film(details* array) : Event(array)

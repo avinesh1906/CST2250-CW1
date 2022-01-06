@@ -1,3 +1,4 @@
+#include "events.h"
 #include "live.h"
 
 // Live class constructor
