@@ -265,7 +265,7 @@ void booking(Event* details){
     std::cout <<"Theatre maximum capacity: " <<  details->getMaxCapacity() << std::endl;
     std::cout << "Number of seats available for booking: " << details->getAvailableSeat() << std::endl;
     // check if available seat is less than maximum seating capacity
-    if (details->getMaxCapacity() > details->getAvailableSeat()){
+    if (details->getAvailableSeat() != 0){
         std::cout << "You can proceed with booking " << std::endl;
         do {
             std::cout << std::endl << "How much seat to book? " << std::endl;
@@ -274,22 +274,22 @@ void booking(Event* details){
                 std::cout << "Error. Maximum Seat Capacity reached." << std::endl;
             }
         } while ((details->getAvailableSeat() - seatToBeBooked) < 0);
-        
+        do {
+            std::cout << "Are you sure to book " << seatToBeBooked << " seats? [Y/N]: ";
+            std::cin >> choice;
+            if (choice != 'Y' && choice != 'N')
+            {
+                std::cout << "Wrong input. Enter Y (Yes) or N (No)" << std::endl;
+            } 
+        } while (choice != 'Y' && choice != 'N' );
+        if (choice == 'Y'){
+            details->booking(seatToBeBooked);
+            std::cout << seatToBeBooked << " seats booked SUCCESSFULLY. " << std::endl;
+        } 
     } else {
         std::cout << "No more seats available " << std::endl;
     }
-    do {
-        std::cout << "Are you sure to book " << seatToBeBooked << " seats? [Y/N]: ";
-        std::cin >> choice;
-        if (choice != 'Y' && choice != 'N')
-        {
-            std::cout << "Wrong input. Enter Y (Yes) or N (No)" << std::endl;
-        } 
-    } while (choice != 'Y' && choice != 'N' );
-    if (choice == 'Y'){
-        details->booking(seatToBeBooked);
-        std::cout << seatToBeBooked << " seats booked SUCCESSFULLY. " << std::endl;
-    } 
+    
     mainMenu();
 }
 
@@ -308,24 +308,22 @@ void cancelBooking(Event* details)
             }
 
         } while ((details->getAvailableSeat() + seatsToCancel) > details->getMaxCapacity());
+        do {
+            std::cout << "Are you sure to cancel booking " << seatsToCancel << " seats? [Y/N]: ";
+            std::cin >> choice;
+            if (choice != 'Y' && choice != 'N')
+            {
+                std::cout << "Wrong input. Enter Y (Yes) or N (No)" << std::endl;
+            } 
+        } while (choice != 'Y' && choice != 'N');
+        if (choice == 'Y'){
+            details->cancel(seatsToCancel);
+            std::cout << seatsToCancel << " seats unbooked SUCCESSFULLY. " << std::endl;
+        } 
     } else {
         std::cout << "There is no booking to cancel" << std::endl;
     }
-
-    do {
-        std::cout << "Are you sure to cancel booking " << seatsToCancel << " seats? [Y/N]: ";
-        std::cin >> choice;
-        if (choice != 'Y' && choice != 'N')
-        {
-            std::cout << "Wrong input. Enter Y (Yes) or N (No)" << std::endl;
-        } 
-    } while (choice != 'Y' && choice != 'N');
-    if (choice == 'Y'){
-        details->cancel(seatsToCancel);
-        std::cout << seatsToCancel << " seats unbooked SUCCESSFULLY. " << std::endl;
-    } 
     mainMenu();
-
 
 }
 
