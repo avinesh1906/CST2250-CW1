@@ -13,6 +13,8 @@ const std::string FILENAME = "file.txt";
 int liveSize;
 int standUpSize;
 int filmSize;
+int eventChoice;
+
 details* liveEvent;
 details* standUpEvent;
 details* filmEvent;
@@ -50,7 +52,7 @@ int main()
 int mainMenu()
 {
     int option;
-    int eventChoice;
+
     std::vector <Event*> events;
 
     // Append the details of each event vector to a main vector
@@ -98,7 +100,7 @@ int mainMenu()
                 std::cin >> eventChoice;
             
                 if (eventChoice < 1 || eventChoice > (liveSize + 1)) {
-                    std::cout << "Invalid choice.";
+                    std::cout << "Invalid choice." << std::endl;
                 }
             } while (eventChoice < 1 || eventChoice > (liveSize + 1));
 
@@ -136,7 +138,7 @@ int mainMenu()
                 std::cin >> eventChoice;
 
                 if (eventChoice < 1 || eventChoice > (standUpSize + 1)) {
-                    std::cout << "Invalid choice.";
+                    std::cout << "Invalid choice." << std::endl;
                 }
             } while (eventChoice < 1 || eventChoice > (standUpSize + 1));
 
@@ -169,7 +171,7 @@ int mainMenu()
                 std::cin >> eventChoice;
 
                 if (eventChoice < 1 || eventChoice > (filmSize + 1)) {
-                    std::cout << "Invalid choice.";
+                    std::cout << "Invalid choice." << std::endl;
                 }
             } while (eventChoice < 1 || eventChoice > (filmSize + 1));
 
@@ -188,6 +190,7 @@ int mainMenu()
 
         // List details for all events
         } else if (option == 4) {
+            system("clear"); 
             std::cout << std::endl << "List details for all events" << std::endl;
             int ref = 1;
 
@@ -202,6 +205,10 @@ int mainMenu()
                     ref = events[i]->getRef();
                 }   
             }
+            
+            std::string input;
+            std::cout << '\n' << "Enter any key to continue...";
+            std::cin >> input;
 
             mainMenu();
         
@@ -259,6 +266,7 @@ int menu(){
 
 void booking(Event* details){
     int seatToBeBooked = 0;
+    char choice;
     std::cout <<"Theatre maximum capacity: " <<  details->getMaxCapacity() << std::endl;
     std::cout << "Number of seats available for booking: " << details->getAvailableSeat() << std::endl;
     // check if available seat is less than maximum seating capacity
@@ -275,13 +283,20 @@ void booking(Event* details){
     } else {
         std::cout << "No more seats available " << std::endl;
     }
-    // deduct the seat booked from available seat
-    details->booking(seatToBeBooked);
+    std::cout << "Are you sure to book " << seatToBeBooked << " seats?" << std::endl;
+    std::cin >> choice;
+    if (choice == 'Y'){
+        details->booking(seatToBeBooked);
+    } else {
+        mainMenu();
+    }
+
 }
 
 void cancelBooking(Event* details)
 {
     int seatsToCancel = 0;
+    char choice;
     std::cout << "Number of seats already booked: " << (details->getMaxCapacity() -  details->getAvailableSeat()) << std::endl;
     if (details->getAvailableSeat() != details->getMaxCapacity()){
         std::cout << "You can proceed with cancellation" << std::endl;
@@ -296,7 +311,13 @@ void cancelBooking(Event* details)
     } else {
         std::cout << "There is no booking to cancel" << std::endl;
     }
-    details->cancel(seatsToCancel);
+    std::cout << "Are you sure to cancel booking " << seatsToCancel << " seats?" << std::endl;
+    std::cin >> choice;
+    if (choice == 'Y'){
+        details->booking(seatsToCancel);
+    } else {
+        mainMenu();
+    }
 }
 
 
