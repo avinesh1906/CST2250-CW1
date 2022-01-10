@@ -205,11 +205,6 @@ int mainMenu()
                     ref = events[i]->getRef();
                 }   
             }
-            
-            std::string input;
-            std::cout << '\n' << "Enter any key to continue...";
-            std::cin >> input;
-
             mainMenu();
         
         // Exit
@@ -284,7 +279,7 @@ void booking(Event* details){
         std::cout << "No more seats available " << std::endl;
     }
     do {
-        std::cout << "Are you sure to book " << seatToBeBooked << " seats? [Y/N]" << std::endl;
+        std::cout << "Are you sure to book " << seatToBeBooked << " seats? [Y/N]: ";
         std::cin >> choice;
         if (choice != 'Y' && choice != 'N')
         {
@@ -318,7 +313,7 @@ void cancelBooking(Event* details)
     }
 
     do {
-        std::cout << "Are you sure to cancel booking " << seatsToCancel << " seats?" << std::endl;
+        std::cout << "Are you sure to cancel booking " << seatsToCancel << " seats? [Y/N]: ";
         std::cin >> choice;
         if (choice != 'Y' && choice != 'N')
         {
