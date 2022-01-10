@@ -2,6 +2,9 @@
 #include "catch.hpp"
 #include "events.h"
 #include "struct.h"
+#include "live.h"
+#include "film.h"
+#include "standUp.h" 
 
 /* Helper function to check if a vector contains the book seat track */
 
