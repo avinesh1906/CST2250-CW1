@@ -73,7 +73,7 @@ int mainMenu()
 
     // keep looping until 5 entered
     do {
-        system("clear");
+
         std::cout << std::endl << "******** Main Menu ********" << std::endl;
         std::cout << "1: Live event" << std::endl;
         std::cout << "2. Stand Up" << std::endl;
@@ -283,14 +283,19 @@ void booking(Event* details){
     } else {
         std::cout << "No more seats available " << std::endl;
     }
-    std::cout << "Are you sure to book " << seatToBeBooked << " seats?" << std::endl;
-    std::cin >> choice;
+    do {
+        std::cout << "Are you sure to book " << seatToBeBooked << " seats? [Y/N]" << std::endl;
+        std::cin >> choice;
+        if (choice != 'Y' && choice != 'N')
+        {
+            std::cout << "Wrong input. Enter Y (Yes) or N (No)" << std::endl;
+        } 
+    } while (choice != 'Y' && choice != 'N' );
     if (choice == 'Y'){
         details->booking(seatToBeBooked);
-    } else {
-        mainMenu();
-    }
-
+        std::cout << seatToBeBooked << " seats booked SUCCESSFULLY. " << std::endl;
+    } 
+    mainMenu();
 }
 
 void cancelBooking(Event* details)
@@ -311,13 +316,22 @@ void cancelBooking(Event* details)
     } else {
         std::cout << "There is no booking to cancel" << std::endl;
     }
-    std::cout << "Are you sure to cancel booking " << seatsToCancel << " seats?" << std::endl;
-    std::cin >> choice;
+
+    do {
+        std::cout << "Are you sure to cancel booking " << seatsToCancel << " seats?" << std::endl;
+        std::cin >> choice;
+        if (choice != 'Y' && choice != 'N')
+        {
+            std::cout << "Wrong input. Enter Y (Yes) or N (No)" << std::endl;
+        } 
+    } while (choice != 'Y' && choice != 'N');
     if (choice == 'Y'){
-        details->booking(seatsToCancel);
-    } else {
-        mainMenu();
-    }
+        details->cancel(seatsToCancel);
+        std::cout << seatsToCancel << " seats unbooked SUCCESSFULLY. " << std::endl;
+    } 
+    mainMenu();
+
+
 }
 
 
