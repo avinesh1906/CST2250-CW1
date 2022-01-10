@@ -35,7 +35,7 @@ std::string Film::description()
 {
     return "Film " + getName() + " of film type " 
     + getType() + " has " + std::to_string(getAvailableSeat()) + " available seats out of " 
-    +  std::to_string(getMaxCapacity()) + " seats.";
+    +  std::to_string(getMaxCapacity()) + " seats. \n";
 
 }
 
