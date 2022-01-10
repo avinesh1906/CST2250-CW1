@@ -71,6 +71,7 @@ int mainMenu()
 
     // keep looping until 5 entered
     do {
+        system("clear");
         std::cout << std::endl << "******** Main Menu ********" << std::endl;
         std::cout << "1: Live event" << std::endl;
         std::cout << "2. Stand Up" << std::endl;
@@ -79,9 +80,10 @@ int mainMenu()
         std::cout << "5. Quit " << std::endl;
         std::cout << std::endl << "Enter your choice: " ;
         std::cin >> option;
-
+        
         // Live event
-        if (option == 1) {    
+        if (option == 1) {   
+            system("clear"); 
             std::cout << std::endl << "******** Live Event ********" << std::endl;      
             
             // print the shows of live event
@@ -89,28 +91,36 @@ int mainMenu()
                 std::cout << (i+1) << ": ";
                 printName(&liveEvent[i]);
             }
-            
+            std::cout << (liveSize + 1) << ": Back to main menu" << std::endl;
+
             do {
                 std::cout << "Choose your event: ";
                 std::cin >> eventChoice;
-
-                if (eventChoice < 1 || eventChoice > liveSize) {
+            
+                if (eventChoice < 1 || eventChoice > (liveSize + 1)) {
                     std::cout << "Invalid choice.";
                 }
-            } while (eventChoice < 1 || eventChoice > liveSize);
+            } while (eventChoice < 1 || eventChoice > (liveSize + 1));
 
-            // dynamically allocated variable of type Event
-            Event* liveClass = new Live(&liveEvent[eventChoice - 1]);
-            live(liveClass);
+            if (eventChoice == (liveSize + 1)){
+                mainMenu();
 
-            // clear the memory
-            delete liveClass;
-            liveClass = NULL;
+            } else {
+                // dynamically allocated variable of type Event
+                Event* liveClass = new Live(&liveEvent[eventChoice - 1]);
+                live(liveClass);
 
-            mainMenu();
+                // clear the memory
+                delete liveClass;
+                liveClass = NULL;
+
+                mainMenu();
+            }
+            
 
         // Stand Up event
         } else if (option == 2) {
+            system("clear"); 
             std::cout << std::endl << "******** StandUp Event ********" << std::endl;      
             
             // choose show out of standup event list
@@ -119,48 +129,62 @@ int mainMenu()
                 printName(&standUpEvent[i]);
             }
 
+            std::cout << (standUpSize + 1) << ": Back to main menu" << std::endl;
+
             do {
                 std::cout << "Choose your event: ";
                 std::cin >> eventChoice;
 
-                if (eventChoice < 1 || eventChoice > standUpSize) {
+                if (eventChoice < 1 || eventChoice > (standUpSize + 1)) {
                     std::cout << "Invalid choice.";
                 }
-            } while (eventChoice < 1 || eventChoice > standUpSize);
+            } while (eventChoice < 1 || eventChoice > (standUpSize + 1));
 
-            Event* standUP = new StandUp(&standUpEvent[eventChoice - 1]);
-            standUp(standUP);
+            if (eventChoice == (standUpSize + 1)){
+                mainMenu();
+            } else {
+                Event* standUP = new StandUp(&standUpEvent[eventChoice - 1]);
+                standUp(standUP);
 
-            delete standUP;
-            standUP = NULL;
+                delete standUP;
+                standUP = NULL;
 
-            mainMenu();
+                mainMenu();
+            }
 
         // Film Event
         } else if (option == 3) {
+            system("clear"); 
             std::cout << std::endl << "******** Film Event ********" << std::endl;      
             
             for (int i = 0; i < filmSize; i++){
                 std::cout << (i+1) << ": ";
                 printName(&filmEvent[i]);
             }
-             
+            
+            std::cout << (filmSize + 1) << ": Back to main menu" << std::endl;
+            
             do {
                 std::cout << "Choose your event: ";
                 std::cin >> eventChoice;
 
-                if (eventChoice < 1 || eventChoice > filmSize) {
+                if (eventChoice < 1 || eventChoice > (filmSize + 1)) {
                     std::cout << "Invalid choice.";
                 }
-            } while (eventChoice < 1 || eventChoice > filmSize);
+            } while (eventChoice < 1 || eventChoice > (filmSize + 1));
 
-            Event* filmFunction = new Film(&filmEvent[eventChoice - 1]);
-            film(filmFunction); 
+            if (eventChoice == (filmSize + 1)){
+                mainMenu();
+            } else {
+                Event* filmFunction = new Film(&filmEvent[eventChoice - 1]);
+                film(filmFunction); 
 
-            delete filmFunction;
-            filmFunction = NULL;
+                delete filmFunction;
+                filmFunction = NULL;
 
-            mainMenu();
+                mainMenu();
+            }
+
 
         // List details for all events
         } else if (option == 4) {
