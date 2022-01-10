@@ -94,13 +94,20 @@ void StandUp::seatToUnbook(int seatsToCancel)
 std::string  StandUp::description(){
     std::string returnString = "";
 
-    // print the seat track
-    for (size_t i = 0; i < seatTrack->size() - 1; i++){
-        returnString += std::to_string(seatTrack->at(i)) + ", ";
-    }
+    if (seatTrack->size() == 0){
+        return getName() + " do not have any booked seat.\n" 
+        + "A total of " + std::to_string(getAvailableSeat()) + " available seats out of " 
+        + std::to_string(getMaxCapacity()) + " seats. \n";
+    } else {
+        // print the seat track
+        for (size_t i = 0; i < seatTrack->size() - 1; i++){
+            returnString += std::to_string(seatTrack->at(i)) + ", ";
+        }
 
-    returnString += std::to_string(seatTrack->at(seatTrack->size() -1 ));
-    return getName() + " has the following booked seats: \n" + returnString + "\n" 
-    + "A total of " + std::to_string(getAvailableSeat()) + " available seats out of " 
-    + std::to_string(getMaxCapacity()) + " seats. \n";
+        returnString += std::to_string(seatTrack->at(seatTrack->size() -1 ));
+        return getName() + " has the following booked seats: \n" + returnString + "\n" 
+        + "A total of " + std::to_string(getAvailableSeat()) + " available seats out of " 
+        + std::to_string(getMaxCapacity()) + " seats. \n";
+    }
+    
 }
