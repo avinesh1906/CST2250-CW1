@@ -47,8 +47,10 @@ void StandUp::seatToBook(int seatToBeBooked)
             std::cin >> seatNo;
             if (std::count(seatTrack->begin(), seatTrack->end(), seatNo)){
                 std::cout << "Seat No " << seatNo << " already booked." << std::endl;
+            } else if (seatNo < 1 || seatNo > 200) {
+                std::cout << "Error. Choose a seat between 1 to 200 inclusive." << std::endl;
             }
-        } while(std::count(seatTrack->begin(), seatTrack->end(), seatNo));
+        } while((std::count(seatTrack->begin(), seatTrack->end(), seatNo) || (seatNo < 1 || seatNo > 200)));
         seatTrack->push_back(seatNo);
     }
 }
