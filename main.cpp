@@ -192,7 +192,7 @@ int mainMenu()
         } else if (option == 4) {
             system("clear"); 
             std::cout << std::endl << "List details for all events" << std::endl;
-            int ref = 1;
+            int ref = 0;
 
             // loop through dynamically allocated vector array
             for(unsigned i = 0; i < events.size(); i++){
@@ -201,8 +201,15 @@ int mainMenu()
                     std::cout << events[i]->description() << std::endl;
                 } else {
                     std::cout << std::endl;
-                    std::cout << events[i]->description() ;
                     ref = events[i]->getRef();
+                    if (ref == 1) {
+                        std::cout << "******** Film Event ********" << std::endl;
+                    } else if (ref == 2){
+                        std::cout << "******** Stand-Up Event ********" << std::endl;
+                    } else {
+                        std::cout << "******** Film Event ********" << std::endl;
+                    }
+                    std::cout << events[i]->description() << std::endl;
                 }   
             }
             mainMenu();
