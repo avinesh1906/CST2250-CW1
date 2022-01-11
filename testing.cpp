@@ -7,18 +7,20 @@
 #include "standUp.h" 
 
 /* Helper function to check if two strings size matches */
-bool checkSize(int str1, int str2)
+int checkList(std::vector <int> old_list, std::vector <int> new_list)
 {
-    if (str1 < 0){
-        return false;
+    int found = 0;
+
+    for (size_t i = 0; i < old_list.size(); i ++){
+        for (size_t j = 0; j < new_list.size(); j++){
+            if (new_list[j] == old_list[i]){
+                found ++;
+            }
+        }
     }
-
-    if (str1 == str2){
-        return true;
-    } 
-    return false;
-
+    return (old_list.size() - found);
 }
+
 
 TEST_CASE("test live ", "[Live()]"){
     Live live;
@@ -147,9 +149,12 @@ TEST_CASE("test standUp booking", "[StandUp()]"){
 TEST_CASE("test standUp cancel booking", "[StandUp()]"){
     StandUp standUp;
 
-    std::vector <int> list = {1,2,3,4,5};
+    std::vector <int> old_list = {1,2,50,51,56};
+    std::vector <int> list = old_list;
+
     standUp.setSeatTrack(&list);
 
+    int seatToCancel = 2;
     int availableSeat = 195;
     standUp.availableSeatPtr(&availableSeat);
 
@@ -157,6 +162,8 @@ TEST_CASE("test standUp cancel booking", "[StandUp()]"){
 
     standUp.cancel(2);
     REQUIRE(standUp.getAvailableSeat() != 190);
+
+    REQUIRE(checkList(old_list, list) == seatToCancel);
 }
 
 TEST_CASE("Check film description", "[description]"){
