@@ -508,40 +508,40 @@ void addData(){
 
     liveEvent[0].ref = 1;
     liveEvent[0].name = "TomorrowIsland";
-    liveEvent[0].availableSeat = 294;
+    liveEvent[0].availableSeat = 300;
     liveEvent[0].seatCapacity = 300;
 
     liveEvent[1].ref = 1;
     liveEvent[1].name = "Major Lazer";
-    liveEvent[1].availableSeat = 150;
+    liveEvent[1].availableSeat = 300;
     liveEvent[1].seatCapacity = 300;
 
     liveEvent[2].ref = 1;
     liveEvent[2].name = "Artbat";
-    liveEvent[2].availableSeat = 50;
+    liveEvent[2].availableSeat = 300;
     liveEvent[2].seatCapacity = 300;
 
     standUpEvent[0].ref = 2;
     standUpEvent[0].name = "Komiko";
-    standUpEvent[0].availableSeat = 195;
+    standUpEvent[0].availableSeat = 200;
     standUpEvent[0].seatCapacity = 200;
-    standUpEvent[0].seatTrack = {1,15,25,50,150};
+    standUpEvent[0].seatTrack = {};
 
     standUpEvent[1].ref = 2;
     standUpEvent[1].name = "Comedy Show";
-    standUpEvent[1].availableSeat = 197;
+    standUpEvent[1].availableSeat = 200;
     standUpEvent[1].seatCapacity = 200;
-    standUpEvent[1].seatTrack = {1,75,126};
+    standUpEvent[1].seatTrack = {};
 
     filmEvent[0].ref = 3;
     filmEvent[0].name = "Spiderman: Work From Home";
-    filmEvent[0].availableSeat = 75;
+    filmEvent[0].availableSeat = 200;
     filmEvent[0].seatCapacity = 200;
     filmEvent[0].filmType = "3D";
 
     filmEvent[1].ref = 3;
     filmEvent[1].name = "Avengers: Age of Covid";
-    filmEvent[1].availableSeat = 50;
+    filmEvent[1].availableSeat = 200;
     filmEvent[1].seatCapacity = 200;
     filmEvent[1].filmType = "2D";
     
