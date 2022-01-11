@@ -7,22 +7,22 @@
 #include "standUp.h" 
 
 /* Helper function to check if two strings matches */
-// int strCompare (const char *string1, const char *string2){
-//     int lenStr1, lenStr2;
-//     lenStr1 = strlen (string1);
-//     lenStr2 = strlen (string2);
+bool checkSize(std::string str1, std::string str2)
+{
+    int lenStr1, lenStr2;
+    lenStr1 = str1.size();
+    lenStr2 = str2.size();
 
-//     /* check strings are equal length without \n */
-//     if (s1len - 1 != s2len)
-//         return 1;
+    if (lenStr1 < 0){
+        return false;
+    }
 
-//     /* we know s1len > 0, as s2len would be -1, so this is safe */
-//     if (s1[s1len - 2] != '\n')
-//         return 1;
+    if (lenStr1 == lenStr2){
+        return true;
+    } 
+    return false;
 
-//     return bcmp (s1, s2, s1len - 1);
-// }
-
+}
 
 TEST_CASE("test live ", "[Live()]"){
     Live live;
@@ -132,7 +132,9 @@ TEST_CASE("test standUp booking", "[StandUp()]"){
     
     int seatToBook = 1;
     int availableSeat = 296;
+    std::vector <int> old_list = {1,2,3,4};
     std::vector <int> list = {1,2,3,4};
+
     standUp.setSeatTrack(&list);
     standUp.availableSeatPtr(&availableSeat);
 
@@ -161,7 +163,6 @@ TEST_CASE("test standUp cancel booking", "[StandUp()]"){
 TEST_CASE("Check film description", "[description]"){
     Film film;
     std::string string2 = "Film Spiderman: Age of Covid of film type 3D has 150 available seats out of 200 seats.";
-    film.setRef(3);
     film.setName("Spiderman: Age of Covid");
     film.setMaxCapacity(200);
     film.setType("3D");
@@ -170,14 +171,24 @@ TEST_CASE("Check film description", "[description]"){
     film.availableSeatPtr(&availableSeat);
     std::string string1 = film.description();
 
-    int lenStr1, lenStr2;
-    lenStr1 = string1.size();
-    lenStr2 = string2.size();
-    
-    SECTION("The two string is of the same size") {
-        REQUIRE(film.description() == string2);
-    }
-    
-    REQUIRE(lenStr1 == lenStr2);
+    REQUIRE(film.description() == string2);
+
+}
+
+TEST_CASE("Check live description", "[description]"){
+    Live live;
+    std::string string2 = "Artbat has 250 available seats out of 300 seats.";
+    std::string string1 = live.description();
+
+    REQUIRE_FALSE(checkSize(string1, string2));
+
+    live.setName("Artbat");
+    live.setMaxCapacity(300);
+    int availableSeat = 250;
+    live.availableSeatPtr(&availableSeat);
+
+    string1 = live.description();
+
+    REQUIRE(checkSize(string1, string2));
 
 }
