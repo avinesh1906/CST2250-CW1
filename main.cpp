@@ -199,6 +199,7 @@ int mainMenu()
                 // display the details
                 if (ref == events[i]->getRef()){
                     std::cout << events[i]->description() << std::endl;
+                    std::cout << std::endl;
                 } else {
                     std::cout << std::endl;
                     ref = events[i]->getRef();

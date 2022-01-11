@@ -6,7 +6,22 @@
 #include "film.h"
 #include "standUp.h" 
 
-/* Helper function to check if a vector contains the book seat track */
+/* Helper function to check if two strings matches */
+// int strCompare (const char *string1, const char *string2){
+//     int lenStr1, lenStr2;
+//     lenStr1 = strlen (string1);
+//     lenStr2 = strlen (string2);
+
+//     /* check strings are equal length without \n */
+//     if (s1len - 1 != s2len)
+//         return 1;
+
+//     /* we know s1len > 0, as s2len would be -1, so this is safe */
+//     if (s1[s1len - 2] != '\n')
+//         return 1;
+
+//     return bcmp (s1, s2, s1len - 1);
+// }
 
 
 TEST_CASE("test live ", "[Live()]"){
@@ -62,7 +77,6 @@ TEST_CASE("test film ", "[Film()]"){
     film.setAvailableSeat(10);
     REQUIRE(film.getAvailableSeat() != 150);
 
-    REQUIRE(film.description() == "Film Spiderman: Age of Covid of film type 3D has 10 available seats out of 200 seats.");
 }
 
 TEST_CASE("test live booking", "[Live()]"){
@@ -142,4 +156,28 @@ TEST_CASE("test standUp cancel booking", "[StandUp()]"){
 
     standUp.cancel(2);
     REQUIRE(standUp.getAvailableSeat() != 190);
+}
+
+TEST_CASE("Check film description", "[description]"){
+    Film film;
+    std::string string2 = "Film Spiderman: Age of Covid of film type 3D has 150 available seats out of 200 seats.";
+    film.setRef(3);
+    film.setName("Spiderman: Age of Covid");
+    film.setMaxCapacity(200);
+    film.setType("3D");
+
+    int availableSeat = 150;
+    film.availableSeatPtr(&availableSeat);
+    std::string string1 = film.description();
+
+    int lenStr1, lenStr2;
+    lenStr1 = string1.size();
+    lenStr2 = string2.size();
+    
+    SECTION("The two string is of the same size") {
+        REQUIRE(film.description() == string2);
+    }
+    
+    REQUIRE(lenStr1 == lenStr2);
+
 }
