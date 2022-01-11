@@ -33,13 +33,17 @@ void StandUp::booking(int seatToBeBooked)
 void StandUp::seatToBook(int seatToBeBooked)
 {   
     int seatNo;
-    std::cout << "Seats already booked: " << std::endl;
-    // display the seat track 
-    for (size_t i = 0; i < seatTrack->size() - 1; i++){
-        std::cout << seatTrack->at(i) << ", ";
-    }
-    std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
 
+    if (seatTrack->size() != 0){
+        std::cout << "Seats already booked: " << std::endl;
+        // display the seat track 
+        for (size_t i = 0; i < seatTrack->size() - 1; i++){
+            std::cout << seatTrack->at(i) << ", ";
+        }
+        std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
+    } else {
+        std::cout << "No seat already booked" << std::endl;
+    }
     // choose seat number to book
     for (int i = 1; i <= seatToBeBooked; i++){
         do {
@@ -65,12 +69,16 @@ void StandUp::cancel(int seatsToCancel)
 void StandUp::seatToUnbook(int seatsToCancel)
 {
     int seatNo;
-    std::cout << "Seats already booked: " << std::endl;
-    for (long unsigned int i = 0; i < seatTrack->size() - 1; i++){
-        std::cout << seatTrack->at(i) << ", ";
+    if (seatTrack->size() != 0){
+        std::cout << "Seats already booked: " << std::endl;
+        // display the seat track 
+        for (size_t i = 0; i < seatTrack->size() - 1; i++){
+            std::cout << seatTrack->at(i) << ", ";
+        }
+        std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
+    } else {
+        std::cout << "No seat already booked" << std::endl;
     }
-    std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
-    
     // choose seat number to cancel
     for (int i = 1; i <= seatsToCancel; i++){
         do {
