@@ -6,18 +6,14 @@
 #include "film.h"
 #include "standUp.h" 
 
-/* Helper function to check if two strings matches */
-bool checkSize(std::string str1, std::string str2)
+/* Helper function to check if two strings size matches */
+bool checkSize(int str1, int str2)
 {
-    int lenStr1, lenStr2;
-    lenStr1 = str1.size();
-    lenStr2 = str2.size();
-
-    if (lenStr1 < 0){
+    if (str1 < 0){
         return false;
     }
 
-    if (lenStr1 == lenStr2){
+    if (str1 == str2){
         return true;
     } 
     return false;
@@ -133,7 +129,7 @@ TEST_CASE("test standUp booking", "[StandUp()]"){
     int seatToBook = 1;
     int availableSeat = 296;
     std::vector <int> old_list = {1,2,3,4};
-    std::vector <int> list = {1,2,3,4};
+    std::vector <int> list = old_list;
 
     standUp.setSeatTrack(&list);
     standUp.availableSeatPtr(&availableSeat);
@@ -175,23 +171,5 @@ TEST_CASE("Check film description", "[description]"){
     std::string string1 = film.description();
 
     REQUIRE(film.description() == string2);
-
-}
-
-TEST_CASE("Check live description", "[description]"){
-    Live live;
-    std::string string2 = "Artbat has 250 available seats out of 300 seats.";
-    std::string string1 = live.description();
-    
-    REQUIRE_FALSE(string1 == string2);
-
-    live.setName("Artbat");
-    live.setMaxCapacity(300);
-    int availableSeat = 250;
-    live.availableSeatPtr(&availableSeat);
-
-    string1 = live.description();
-
-    // REQUIRE(checkSize(string1, string2));
 
 }
