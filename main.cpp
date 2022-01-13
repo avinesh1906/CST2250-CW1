@@ -143,13 +143,17 @@ void menuChoice(int vectorSize, details* event){
         mainMenu();
     } else {
         // dynamically allocated variable of type Event
-        Event* eventClass = new Live(&event[eventChoice - 1]);
-
-        if (eventClass->getRef() == 1){
+        Event* eventClass;
+        if (event->ref == 1){
+            eventClass = new Live(&event[eventChoice - 1]);
             live(eventClass);
-        } else if (eventClass->getRef() == 2){
+
+        } else if (event->ref == 2){
+            eventClass = new StandUp(&event[eventChoice - 1]);
             standUp(eventClass);
+            
         } else {
+            eventClass = new Film(&event[eventChoice - 1]);
             film(eventClass);
         }
 
@@ -180,12 +184,12 @@ void listAll(){
         // display the details
         if (ref == events[i]->getRef()){
             std::cout << events[i]->description() << std::endl;
-            std::cout << std::endl;
+            // std::cout << std::endl;
         } else {
             std::cout << std::endl;
             ref = events[i]->getRef();
             if (ref == 1) {
-                std::cout << "******** Film Event ********" 
+                std::cout << "******** Live Event ********" 
                           << std::endl;
             } else if (ref == 2){
                 std::cout << "******** Stand-Up Event ********" 
