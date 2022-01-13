@@ -151,7 +151,7 @@ void menuChoice(int vectorSize, details* event){
         } else if (event->ref == 2){
             eventClass = new StandUp(&event[eventChoice - 1]);
             standUp(eventClass);
-            
+
         } else {
             eventClass = new Film(&event[eventChoice - 1]);
             film(eventClass);
@@ -353,6 +353,8 @@ void live(Event* liveDetails)
                       << "List details and availability for Live Event" 
                       << std::endl;
             std::cout << liveDetails->description() << std::endl;
+            std::cout << std::endl;
+
         } else if (option == 4){
             mainMenu();
         }
@@ -384,6 +386,7 @@ void standUp(Event* standUpDetails)
                       << "List details and availability for Standing Event" 
                       << std::endl;
             std::cout << standUpDetails->description();
+            std::cout << std::endl;
         } else if (option ==4 ){
             mainMenu();
         }
@@ -416,6 +419,7 @@ void film(Event* filmDetails)
                       << "List details and availability for film Event" 
                       << std::endl;
             std::cout << filmDetails->description();
+            std::cout << std::endl;
         } else {
             mainMenu();
         }
