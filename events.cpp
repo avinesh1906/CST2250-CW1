@@ -1,7 +1,19 @@
+/* 
+    events.cpp
+    Author: M00776456
+    Created: 20/12/21
+    Updated: 13/01/22
+ */
+
 #include "events.h"
 #include <string>
 
 // constructor for Event class
+Event::Event()
+{
+
+}
+
 Event::Event(details* array)
 {
     setRef(array->ref);
@@ -10,6 +22,13 @@ Event::Event(details* array)
     setMaxCapacity(array->seatCapacity);
 }
 
+// Deconstructor for Event class
+Event::~Event()
+{
+
+}
+
+/* Setters */
 void Event::setName(std::string Name)
 {
     name = Name;
@@ -32,33 +51,21 @@ void Event::setAvailableSeat(int availableseat){
     *availableSeat = availableseat;
 }
 
+/* getters */
+
 int Event::getAvailableSeat(){
     return *(availableSeat);
 }
 
-Event::Event()
-{
-
-}
-
-// Deconstructor for Event class
-Event::~Event()
-{
-
-}
-
-// get the name of the event
 std::string Event::getName(){
     return name;
 }
 
-// get the reference of the event
 int Event::getRef()
 {
     return ref;
 }
 
-// get the maximum capacity of the event
 int Event::getMaxCapacity(){
     return maxCapacity;
 }
