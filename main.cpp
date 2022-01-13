@@ -58,8 +58,8 @@ int main()
 
 int mainMenu()
 {
-    int option;
-
+    int option = 0;
+        
     // sort the seat track by ascending order
     for (int i = 0; i < standUpSize; i++){
         sort(standUpEvent[i].seatTrack.begin(),
@@ -167,6 +167,9 @@ void menuChoice(int vectorSize, details* event){
 
 void listAll(){
 
+    // clear the event vector
+    events.clear();
+
     // Append the details of each event vector to a main vector
     for (int i = 0; i < liveSize; i++){
         events.push_back(new Live(&liveEvent[i]));
@@ -180,7 +183,7 @@ void listAll(){
 
     int ref = 0;
     // loop through dynamically allocated vector array
-    for(unsigned i = 0; i < events.size(); i++){
+    for(size_t i = 0; i < events.size(); i++){
         // display the details
         if (ref == events[i]->getRef()){
             std::cout << events[i]->description() << std::endl;
@@ -199,8 +202,9 @@ void listAll(){
                           << std::endl;
             }
             std::cout << events[i]->description() << std::endl;
-        }   
+        } 
     }
+
     mainMenu();
 }
 
