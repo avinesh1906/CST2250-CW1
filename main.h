@@ -90,4 +90,10 @@ void booking(Event* details);
  */
 void cancelBooking(Event* details);
 
+void menuChoice(int vectorSize, details* event);
+
+void listAll();
+
+void quit();
+
 #endif
