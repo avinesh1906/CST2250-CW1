@@ -13,15 +13,15 @@ class Event {
         int maxCapacity;
         int* availableSeat;
     public:
+        // constructor
         Event();
         //explicit constructor
         Event(details* array);
+
         //deconstructor
         virtual ~Event();
 
-        //member functions
-        virtual std::string description() = 0;
-
+        // Setters and getters
         void setName(std::string name);
         std::string getName();
 
@@ -35,7 +35,8 @@ class Event {
         void setAvailableSeat(int availableSeat);
         int getAvailableSeat();
 
-        //base class
+        // virtual functions
+        virtual std::string description() = 0;
         virtual void booking(int seatToBeBooked) = 0;
         virtual void cancel(int seatsToCancel) = 0;
         
