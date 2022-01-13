@@ -28,4 +28,5 @@ events.o : events.cpp
 .PHONY : clean
 clean :
 	$(RM) *.o
-	$(RM) execute, testing
+	$(RM) execute
+	$(RM) testing
