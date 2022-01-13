@@ -22,11 +22,10 @@ standUp.o : standUp.cpp
 film.o : film.cpp 
 	$(CXX) $(CXXFLAGS) -c $^
 
-events.o : events.cpp
+events.o : events.cpp 
 	$(CXX) $(CXXFLAGS) -c $<
 
 .PHONY : clean
 clean :
 	$(RM) *.o
-	$(RM) execute
-	$(RM) testing
+	$(RM) execute, testing
