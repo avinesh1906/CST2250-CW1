@@ -90,10 +90,22 @@ void booking(Event* details);
  */
 void cancelBooking(Event* details);
 
+/* 
+    To display the shows of each event and make a choice
+    @param vectorSize stores the size of the vector event
+ */
 void menuChoice(int vectorSize, details* event);
 
+/* 
+    To list details of all events\
+    @param no parameter
+ */
 void listAll();
 
+/* 
+    To clear the heap memory and exit the program
+    @param no parameter
+ */
 void quit();
 
 #endif
