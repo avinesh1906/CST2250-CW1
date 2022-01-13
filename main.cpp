@@ -68,8 +68,8 @@ int mainMenu()
 
     // keep looping until 5 entered
     do {
-
-        std::cout << std::endl << "******** Main Menu ********" << std::endl;
+        std::cout << std::endl << "Theatre Booking System" << std::endl;
+        std::cout <<  "******** Main Menu ********" << std::endl;
         std::cout << "1: Live event" << std::endl;
         std::cout << "2. Stand Up" << std::endl;
         std::cout << "3. Film " << std::endl;
