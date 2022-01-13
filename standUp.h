@@ -1,6 +1,13 @@
 #ifndef __STANDUP_H_
 #define __STANDUP_H_
 
+/* 
+    standUp.h
+    Author: M00776456
+    Created: 06/01/22
+    Updated: 13/01/22
+ */
+
 #include "events.h"
 #include "struct.h"
 #include <vector>

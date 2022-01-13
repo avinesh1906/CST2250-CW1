@@ -1,3 +1,10 @@
+/* 
+    events.cpp
+    Author: M00776456
+    Created: 20/12/21
+    Updated: 13/01/22
+ */
+
 #include "events.h"
 #include <string>
 

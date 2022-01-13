@@ -1,6 +1,13 @@
 #ifndef __EVENTS_H_
 #define __EVENTS_H_
 
+/* 
+    events.h
+    Author: M00776456
+    Created: 20/12/21
+    Updated: 13/01/22
+ */
+
 #include <string>
 #include <vector>
 #include "struct.h"

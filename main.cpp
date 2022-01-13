@@ -1,3 +1,10 @@
+/* 
+    main.cpp
+    Author: M00776456
+    Created: 23/12/21
+    Updated: 13/01/22
+ */
+
 #include "main.h"
 #include "events.h"
 
