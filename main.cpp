@@ -137,7 +137,7 @@ int mainMenu()
             
             // choose show out of standup event list
             for (int i = 0; i < standUpSize; i++){
-                std::cout << (i+1) << ": ";
+                std::cout << (i + 1) << ": ";
                 printName(&standUpEvent[i]);
             }
 
@@ -172,7 +172,7 @@ int mainMenu()
                       << std::endl;      
             
             for (int i = 0; i < filmSize; i++){
-                std::cout << (i+1) << ": ";
+                std::cout << (i + 1) << ": ";
                 printName(&filmEvent[i]);
             }
             
