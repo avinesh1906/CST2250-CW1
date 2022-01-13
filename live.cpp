@@ -22,7 +22,9 @@ Live::Live() : Event()
 // Description for live events
 std::string Live::description(){
 
-   return getName() + " has " +  std::to_string(getAvailableSeat()) +  " available seats out of " + std::to_string(getMaxCapacity()) + " seats." ;
+   return getName() + " has " +  std::to_string(getAvailableSeat()) 
+        +  " available seats out of " + std::to_string(getMaxCapacity()) 
+        + " seats." ;
 
 }
 

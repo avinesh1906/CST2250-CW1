@@ -57,11 +57,14 @@ void StandUp::seatToBook(int seatToBeBooked)
             std::cout << "Enter seat number to be booked: ";
             std::cin >> seatNo;
             if (std::count(seatTrack->begin(), seatTrack->end(), seatNo)){
-                std::cout << "Seat No " << seatNo << " already booked." << std::endl;
+                std::cout << "Seat No " << seatNo << " already booked." 
+                          << std::endl;
             } else if (seatNo < 1 || seatNo > 200) {
-                std::cout << "Error. Choose a seat between 1 to 200 inclusive." << std::endl;
+                std::cout << "Error. Choose a seat between 1 to 200 inclusive." 
+                          << std::endl;
             }
-        } while((std::count(seatTrack->begin(), seatTrack->end(), seatNo) || (seatNo < 1 || seatNo > 200)));
+        } while((std::count(seatTrack->begin(), seatTrack->end(), seatNo) 
+                || (seatNo < 1 || seatNo > 200)));
         seatTrack->push_back(seatNo);
     }
 }
@@ -92,7 +95,8 @@ void StandUp::seatToUnbook(int seatsToCancel)
             std::cout << "Enter seat number to be cancelled: ";
             std::cin >> seatNo;
             if (!std::count(seatTrack->begin(), seatTrack->end(), seatNo)){
-                std::cout << "Seat No " << seatNo << " is not on the booking list." << std::endl;
+                std::cout << "Seat No " << seatNo 
+                          << " is not on the booking list." << std::endl;
             }
         } while(!std::count(seatTrack->begin(), seatTrack->end(), seatNo));
         
@@ -113,8 +117,9 @@ std::string  StandUp::description(){
 
     if (seatTrack->size() == 0){
         return getName() + " do not have any booked seat.\n" 
-        + "A total of " + std::to_string(getAvailableSeat()) + " available seats out of " 
-        + std::to_string(getMaxCapacity()) + " seats. \n";
+            + "A total of " + std::to_string(getAvailableSeat()) + 
+            " available seats out of " + std::to_string(getMaxCapacity()) 
+            + " seats. \n";
     } else {
         // print the seat track
         for (size_t i = 0; i < seatTrack->size() - 1; i++){
@@ -122,9 +127,10 @@ std::string  StandUp::description(){
         }
 
         returnString += std::to_string(seatTrack->at(seatTrack->size() -1 ));
-        return getName() + " has the following booked seats: \n" + returnString + "\n" 
-        + "A total of " + std::to_string(getAvailableSeat()) + " available seats out of " 
-        + std::to_string(getMaxCapacity()) + " seats. \n";
+        return getName() + " has the following booked seats: \n" 
+            + returnString + "\n" + "A total of " 
+            + std::to_string(getAvailableSeat()) + " available seats out of " 
+            + std::to_string(getMaxCapacity()) + " seats. \n";
     }
     
 }
