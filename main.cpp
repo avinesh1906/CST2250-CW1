@@ -80,28 +80,29 @@ int mainMenu()
         
         // Live event
         if (option == 1) {   
-            system("clear"); 
+            // clear the screen
+            std::cout << "\x1B[2J\x1B[H";
             std::cout << std::endl << "******** Live Event ********" 
                       << std::endl;      
             menuChoice(liveSize, liveEvent);
 
         // Stand Up event
         } else if (option == 2) {
-            system("clear"); 
+            std::cout << "\x1B[2J\x1B[H"; 
             std::cout << std::endl << "******** StandUp Event ********" 
                       << std::endl;      
             menuChoice(standUpSize, standUpEvent);
 
         // Film Event
         } else if (option == 3) {
-            system("clear"); 
+            std::cout << "\x1B[2J\x1B[H"; 
             std::cout << std::endl << "******** Film Event ********" 
                       << std::endl;      
             menuChoice(filmSize, filmEvent);
 
         // List details for all events
         } else if (option == 4) {
-            system("clear"); 
+            std::cout << "\x1B[2J\x1B[H";
             std::cout << std::endl << "List details for all events" 
                       << std::endl;
             listAll();
