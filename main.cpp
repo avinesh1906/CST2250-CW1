@@ -55,7 +55,6 @@ int main()
     mainMenu();
 }
 
-
 int mainMenu()
 {
     int option;
@@ -264,7 +263,6 @@ int mainMenu()
     return option;    
 }   
 
-// function menu
 int menu(){
     int option;
     // prompt user to make a choice
@@ -371,8 +369,6 @@ void cancelBooking(Event* details)
 
 }
 
-
-// Live event choice
 void live(Event* liveDetails)
 {   
     int option;
@@ -406,7 +402,6 @@ void live(Event* liveDetails)
 
 }
 
-// Stand Up event choice
 void standUp(Event* standUpDetails)
 {
     int option;
@@ -437,7 +432,6 @@ void standUp(Event* standUpDetails)
 
 }
 
-// Film event choice
 void film(Event* filmDetails)
 {
     int option;
@@ -470,7 +464,6 @@ void film(Event* filmDetails)
 
 }
 
-// load file 
 void loadFile(){
     std::ifstream myFile(FILENAME);
     std::string myText;
@@ -565,7 +558,6 @@ void loadFile(){
     myFile.close();
 }
 
-// add data to the file if not found
 void addData(){
     std::ofstream MyFile(FILENAME);
 
@@ -648,12 +640,10 @@ void addData(){
     MyFile.close();
 }
 
-// print the event name
 void printName(details* array){
     std::cout << array->name << std::endl;
 }
 
-// save data to the file
 void saveData()
 {
     std::ofstream MyFile(FILENAME, std::ofstream::trunc);
@@ -689,7 +679,6 @@ void saveData()
     MyFile.close();
 }
 
-// determine the vector size for liveEvent, standUpEvent and filmEvent 
 void determineSize()
 {
     liveSize = 0;

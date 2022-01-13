@@ -20,11 +20,14 @@ class StandUp : public Event {
     public:
         StandUp();
         StandUp(details* array);
-        std::string  description();
-        void booking(int seatToBeBooked);
-        void cancel(int seatsToCancel);
+
         void setSeatTrack(std::vector <int> *list);
+        std::string  description();
+
+        void booking(int seatToBeBooked);
         void seatToBook(int seatToBeBooked);
+
+        void cancel(int seatsToCancel);
         void seatToUnbook(int seatsToCancelst);
 };
 

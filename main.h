@@ -28,76 +28,65 @@ int mainMenu();
     @param no parameter
     @return int    
  */
-
 int menu();
 
 /* 
     To add a booking or cancel booking and list details and availability for live event.
     @param liveDetails stores the details of the chosen live event
-    @return void 
  */
 void live(Event* liveDetails);
 
 /* 
     To add a booking or cancel booking and list details and availability for stand up event.
     @param standUpDetails stores the details of the chosen stand-up event
-    @return void 
  */
 void standUp(Event* standUpDetails);
 
 /* 
     To add a booking or cancel booking and list details and availability for film event.
     @param filmDetails stores the details of the chosen film event
-    @return void 
  */
 void film(Event* filmDetails);
 
 /*
     To load the file if already exist into a vector 
     @param no parameter
-    @return no return
  */
 void loadFile();
 
 /*
     To print the list of name of a particular event
     @param array stores the details of type struc
-    @return no return
  */
 void printName(details* array);
 
 /* 
     To add data to the file if doesn't exist
     @param no parameter
-    @return no return
  */
 void addData();
 
 /* 
-    To save datat to the file when quit
+    To save data to the file when quit
     @param no parameter
-    @return no return
  */
 void saveData();
 
 /* 
     To determine the size of the vector size 
     @param no parameter
-    @return no return
  */
 void determineSize();
 
 /* 
     To add booking for an event
     @param details stores the details of the chosen event
-    @return no return
  */
 void booking(Event* details);
 
 /* 
     To cancel booking for an event
     @param details stores the details of the chosen event
-    @return no return
  */
 void cancelBooking(Event* details);
 

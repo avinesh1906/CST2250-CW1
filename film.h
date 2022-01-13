@@ -19,11 +19,13 @@ class Film : public Event {
     public:
         Film();
         Film(details* array);
+
+        void setType(std::string filmType);
+        std::string getType();
+        
         std::string  description();
         void booking(int seatToBeBooked);
         void cancel(int seatsToCancel);
-        void setType(std::string filmType);
-        std::string getType();
 };
 
 #endif

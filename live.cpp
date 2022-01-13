@@ -9,22 +9,13 @@
 #include "events.h"
 
 // Live class constructor
-Live::Live(details* array) : Event(array)
-{
-
-}
-
 Live::Live() : Event()
 {
 
 }
 
-// Description for live events
-std::string Live::description(){
-
-   return getName() + " has " +  std::to_string(getAvailableSeat()) 
-        +  " available seats out of " + std::to_string(getMaxCapacity()) 
-        + " seats." ;
+Live::Live(details* array) : Event(array)
+{
 
 }
 
@@ -37,7 +28,14 @@ void Live::booking(int seatToBeBooked)
 // cancel the live event
 void Live::cancel(int seatsToCancel)
 {
-    // increase available seat
     setAvailableSeat(getAvailableSeat() + seatsToCancel);
+}
+
+// Description for live events
+std::string Live::description(){
+
+   return getName() + " has " +  std::to_string(getAvailableSeat()) 
+        +  " available seats out of " + std::to_string(getMaxCapacity()) 
+        + " seats." ;
 
 }

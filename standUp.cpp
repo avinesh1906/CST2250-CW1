@@ -12,14 +12,14 @@
 #include <algorithm>
 
 // StandUp event constructor
-StandUp::StandUp(details* array) : Event(array)
-{
-    setSeatTrack(&(array->seatTrack));
-}
-
 StandUp::StandUp() : Event()
 {
 
+}
+
+StandUp::StandUp(details* array) : Event(array)
+{
+    setSeatTrack(&(array->seatTrack));
 }
 
 void StandUp::setSeatTrack(std::vector <int> *list)
@@ -41,18 +41,22 @@ void StandUp::seatToBook(int seatToBeBooked)
 {   
     int seatNo;
 
+    // check if seatTrack vector size is zero
     if (seatTrack->size() != 0){
         std::cout << "Seats already booked: " << std::endl;
         // display the seat track 
         for (size_t i = 0; i < seatTrack->size() - 1; i++){
             std::cout << seatTrack->at(i) << ", ";
         }
+        // display the last content of the vector
         std::cout << seatTrack->at(seatTrack->size() -1 ) << std::endl;
     } else {
         std::cout << "No seat already booked" << std::endl;
     }
     // choose seat number to book
     for (int i = 1; i <= seatToBeBooked; i++){
+        // loop until seatNo is present in seatTrack
+        // or seatNumber is less or more than 200
         do {
             std::cout << "Enter seat number to be booked: ";
             std::cin >> seatNo;
@@ -65,6 +69,8 @@ void StandUp::seatToBook(int seatToBeBooked)
             }
         } while((std::count(seatTrack->begin(), seatTrack->end(), seatNo) 
                 || (seatNo < 1 || seatNo > 200)));
+
+        // append the seatNo to seatTrack
         seatTrack->push_back(seatNo);
     }
 }
@@ -79,6 +85,7 @@ void StandUp::cancel(int seatsToCancel)
 void StandUp::seatToUnbook(int seatsToCancel)
 {
     int seatNo;
+
     if (seatTrack->size() != 0){
         std::cout << "Seats already booked: " << std::endl;
         // display the seat track 
@@ -125,8 +132,8 @@ std::string  StandUp::description(){
         for (size_t i = 0; i < seatTrack->size() - 1; i++){
             returnString += std::to_string(seatTrack->at(i)) + ", ";
         }
-
         returnString += std::to_string(seatTrack->at(seatTrack->size() -1 ));
+        
         return getName() + " has the following booked seats: \n" 
             + returnString + "\n" + "A total of " 
             + std::to_string(getAvailableSeat()) + " available seats out of " 
