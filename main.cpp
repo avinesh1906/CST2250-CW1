@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <bits/stdc++.h>
+#include <algorithm>
 
 // filename
 const std::string FILENAME = "file.txt";
@@ -62,7 +62,7 @@ int mainMenu()
         
     // sort the seat track by ascending order
     for (int i = 0; i < standUpSize; i++){
-        sort(standUpEvent[i].seatTrack.begin(),
+        std::sort(standUpEvent[i].seatTrack.begin(),
             standUpEvent[i].seatTrack.end());
     }
 
